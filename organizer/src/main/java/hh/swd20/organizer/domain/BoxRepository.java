@@ -5,6 +5,6 @@ import org.springframework.data.repository.CrudRepository;
 
 public interface BoxRepository extends CrudRepository<Box, Long> {
 	
-	List<Box> findByName(String bName);
+	List<Box> findBybName(String bName);
 
 }
