@@ -9,6 +9,8 @@ import org.springframework.context.annotation.Bean;
 
 import hh.swd20.organizer.domain.Box;
 import hh.swd20.organizer.domain.BoxRepository;
+import hh.swd20.organizer.domain.Item;
+import hh.swd20.organizer.domain.ItemRepository;
 
 @SpringBootApplication
 public class OrganizerApplication {
@@ -20,7 +22,7 @@ public class OrganizerApplication {
 	}
 	
 	@Bean
-	public CommandLineRunner boxDemo(BoxRepository boxRepository) {
+	public CommandLineRunner boxDemo(BoxRepository boxRepository, ItemRepository itemRepository) {
 		return (args) -> {
 			log.info("Test data");
 			
@@ -29,10 +31,18 @@ public class OrganizerApplication {
 			boxRepository.save(box1);
 			boxRepository.save(box2);
 			
+			Item item1 = new Item("Nahkatakki", "Janita", true, box1);
+			itemRepository.save(item1);
+			
 			log.info("Fetch boxes");
 			for(Box box : boxRepository.findAll()) {
 				log.info(box.toString());
 			}
+//			
+//			log.info("Fetch Items");
+//			for (Item item : itemRepository.findAll()) {
+//				log.info(item.toString());
+//			}
 		};
 		
 	}

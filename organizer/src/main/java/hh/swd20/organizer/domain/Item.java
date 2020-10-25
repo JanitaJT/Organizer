@@ -1,29 +1,43 @@
 package hh.swd20.organizer.domain;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 
 
+@Entity
 public class Item {
 
-
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long itemId;
 	private String iName;
 	private String iOwner;
 	private Boolean iPrivate;
 	
-	public Item(Long itemId, String iName, String iOwner, Boolean iPrivate) {
+	@ManyToOne
+	@JoinColumn(name = "boxId")
+	private Box box;
+	
+	public Item(Long itemId, String iName, String iOwner, Boolean iPrivate, Box box) {
 		super();
 		this.itemId = itemId;
 		this.iName = iName;
 		this.iOwner = iOwner;
 		this.iPrivate = iPrivate;
+		this.box = box;
 	}
 
-	public Item(String iName, String iOwner, Boolean iPrivate) {
+	public Item(String iName, String iOwner, Boolean iPrivate, Box box) {
 		super();
 		this.iName = iName;
 		this.iOwner = iOwner;
 		this.iPrivate = iPrivate;
+		this.box = box;
 	}
 
 	public Item() {
@@ -66,9 +80,18 @@ public class Item {
 		this.iPrivate = iPrivate;
 	}
 
+	public Box getBox() {
+		return box;
+	}
+
+	public void setBox(Box box) {
+		this.box = box;
+	}
+
 	@Override
 	public String toString() {
-		return "Item [itemId=" + itemId + ", iName=" + iName + ", iOwner=" + iOwner + ", iPrivate=" + iPrivate + "]";
+		
+		return "Item [itemId=" + itemId + ", iName=" + iName + ", iOwner=" + iOwner + ", iPrivate=" + iPrivate + "box=" + this.getBox() + "]";
 	}
 	
 	

@@ -1,9 +1,16 @@
 package hh.swd20.organizer.domain;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 public class Box {
@@ -16,6 +23,9 @@ public class Box {
 	private Boolean bPrivate;
 	private String bLocation;
 
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "box")
+	private List<Item> items;
+	
 	public Box(Long boxId, String bName, String bDesc, Boolean bPrivate, String bLocation) {
 		super();
 		this.boxId = boxId;
@@ -80,6 +90,17 @@ public class Box {
 
 	public void setbLocation(String bLocation) {
 		this.bLocation = bLocation;
+	}
+	
+
+
+
+	public List<Item> getItems() {
+		return items;
+	}
+
+	public void setItems(List<Item> items) {
+		this.items = items;
 	}
 
 	@Override
