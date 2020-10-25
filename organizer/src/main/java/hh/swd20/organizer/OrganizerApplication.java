@@ -9,6 +9,8 @@ import org.springframework.context.annotation.Bean;
 
 import hh.swd20.organizer.domain.Box;
 import hh.swd20.organizer.domain.BoxRepository;
+import hh.swd20.organizer.domain.Category;
+import hh.swd20.organizer.domain.CategoryRepository;
 import hh.swd20.organizer.domain.Item;
 import hh.swd20.organizer.domain.ItemRepository;
 
@@ -22,7 +24,7 @@ public class OrganizerApplication {
 	}
 	
 	@Bean
-	public CommandLineRunner boxDemo(BoxRepository boxRepository, ItemRepository itemRepository) {
+	public CommandLineRunner boxDemo(BoxRepository boxRepository, ItemRepository itemRepository, CategoryRepository categoryRepository) {
 		return (args) -> {
 			log.info("Test data");
 			
@@ -30,19 +32,29 @@ public class OrganizerApplication {
 			Box box2 = new Box("Kesä", "Janita kesätakkeja", false , "Varasto hylly 1");
 			boxRepository.save(box1);
 			boxRepository.save(box2);
+
+			Category cate1 = new Category("Kengät", "kesäkenkiä");
+			Category cate2 = new Category("Kesä", "Kesä takkeja");
+			categoryRepository.save(cate1);
+			categoryRepository.save(cate2);
 			
-			Item item1 = new Item("Nahkatakki", "Janita", true, box1);
+			Item item1 = new Item("Nahkatakki", "Janita", true, box1, cate2);
 			itemRepository.save(item1);
 			
 			log.info("Fetch boxes");
 			for(Box box : boxRepository.findAll()) {
 				log.info(box.toString());
 			}
-//			
-//			log.info("Fetch Items");
-//			for (Item item : itemRepository.findAll()) {
-//				log.info(item.toString());
-//			}
+			
+			log.info("Fetch Items");
+			for (Item item : itemRepository.findAll()) {
+				log.info(item.toString());
+			}
+			
+			log.info("Fetch Categories");
+			for (Category category : categoryRepository.findAll()) {
+				log.info(category.toString());
+			}
 		};
 		
 	}

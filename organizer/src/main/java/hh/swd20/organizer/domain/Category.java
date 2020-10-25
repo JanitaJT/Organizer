@@ -1,10 +1,25 @@
 package hh.swd20.organizer.domain;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+
+@Entity
 public class Category {
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long cateId;
 	private String cName;
 	private String cDesc;
+
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "category")
+	private List<Item> items;
 
 	public Category(Long cateId, String cName, String cDesc) {
 		super();
@@ -48,6 +63,15 @@ public class Category {
 
 	public void setcDesc(String cDesc) {
 		this.cDesc = cDesc;
+	}
+
+
+	public List<Item> getItems() {
+		return items;
+	}
+
+	public void setItems(List<Item> items) {
+		this.items = items;
 	}
 
 	@Override

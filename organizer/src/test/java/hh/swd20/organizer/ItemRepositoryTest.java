@@ -26,7 +26,7 @@ public class ItemRepositoryTest {
 	
 	@Test
 	public void addItem() {
-		Item item = new Item("Test", "Test", true, null);
+		Item item = new Item("Test", "Test", true, null, null);
 		repository.save(item);
 		assertThat(item.getItemId()).isNotNull();
 		
