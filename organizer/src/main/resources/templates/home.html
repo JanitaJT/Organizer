@@ -1,0 +1,50 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+<title>Organizer</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+       <link rel="stylesheet" href="home.css">
+
+</head>
+<body>
+  <header><h1>Tervetuloa etusivulle</h1>
+         <img src="avatar.jpg" alt="Avatar" class="avatar">
+    </header>
+
+<div class="topnav">
+       <!--Tähän tulee listaus kaikista Boxeista jotka ovat julkisia-->
+    <!--Tai ehkä top navigointi missä on kirjaudu sisään, rekisteröidy ja etsi ominaisuus-->
+    
+  <a class="active" href="login.html">Kirjaudu sisään</a>
+  <a href="register.html">Rekisteröidy</a>
+  <div class="search-container">
+    <form action="/action_page.php">
+   <input type="text" placeholder="Etsi.." name="search">
+      <button class="button-search" type="submit"><i class="fa fa-search"></i></button>
+    </form>
+  </div>
+</div>
+    
+    <h1>Tähän tulee listaus kaikista laatikoista</h1>
+    <br>
+    <table>
+    <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Location</th>
+        <th>Private</th>
+       <!-- <th>Owner</th> --> 
+        </tr>
+    <tr th:each="box : ${boxes}">
+        <td th:text="${box.bName}">Name</td>
+        <td th:text="${box.bDesc}">Description</td>
+        <td th:text="${box.bLocation}">Location</td>
+        <td th:text="${box.bPrivate}">Private</td>
+        </tr>
+    </table>
+</body>
+</html>

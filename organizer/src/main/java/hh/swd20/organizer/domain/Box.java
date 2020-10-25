@@ -1,49 +1,53 @@
 package hh.swd20.organizer.domain;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
 public class Box {
-	
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long boxId;
 	private String bName;
 	private String bDesc;
-	private String bPrivate;
-	private String bPublic;
+	private Boolean bPrivate;
 	private String bLocation;
-	
-	public Box(Long boxId, String bName, String bDesc, String bPrivate, String bPublic, String bLocation) {
+
+	public Box(Long boxId, String bName, String bDesc, Boolean bPrivate, String bLocation) {
 		super();
 		this.boxId = boxId;
 		this.bName = bName;
 		this.bDesc = bDesc;
 		this.bPrivate = bPrivate;
-		this.bPublic = bPublic;
 		this.bLocation = bLocation;
 	}
 
-	public Box(String bName, String bDesc, String bPrivate, String bPublic, String bLocation) {
+	public Box(String bName, String bDesc, Boolean bPrivate, String bLocation) {
 		super();
 		this.bName = bName;
 		this.bDesc = bDesc;
 		this.bPrivate = bPrivate;
-		this.bPublic = bPublic;
 		this.bLocation = bLocation;
 	}
-	
+
 	public Box() {
 		super();
 		this.boxId = null;
 		this.bName = null;
 		this.bDesc = null;
 		this.bPrivate = null;
-		this.bPublic = null;
 		this.bLocation = null;
 	}
 
-	public Long getboxId() {
+	public Long getBoxId() {
 		return boxId;
 	}
 
-	public void setbId(Long bId) {
-		this.boxId = bId;
+	public void setBoxId(Long boxId) {
+		this.boxId = boxId;
 	}
 
 	public String getbName() {
@@ -62,20 +66,12 @@ public class Box {
 		this.bDesc = bDesc;
 	}
 
-	public String getbPrivate() {
+	public Boolean getbPrivate() {
 		return bPrivate;
 	}
 
-	public void setbPrivate(String bPrivate) {
+	public void setbPrivate(Boolean bPrivate) {
 		this.bPrivate = bPrivate;
-	}
-
-	public String getbPublic() {
-		return bPublic;
-	}
-
-	public void setbPublic(String bPublic) {
-		this.bPublic = bPublic;
 	}
 
 	public String getbLocation() {
@@ -88,10 +84,8 @@ public class Box {
 
 	@Override
 	public String toString() {
-		return "Box [boxId=" + boxId + ", bName=" + bName + ", bDesc=" + bDesc + ", bPrivate=" + bPrivate + ", bPublic="
-				+ bPublic + ", bLocation=" + bLocation + "]";
+		return "Box [boxId=" + boxId + ", bName=" + bName + ", bDesc=" + bDesc + ", bPrivate=" + bPrivate
+				+ ", bLocation=" + bLocation + "]";
 	}
-	
-	
 
 }
