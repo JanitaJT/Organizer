@@ -93,8 +93,6 @@ public class Box {
 	}
 	
 
-
-
 	public List<Item> getItems() {
 		return items;
 	}

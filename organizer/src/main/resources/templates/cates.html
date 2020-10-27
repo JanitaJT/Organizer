@@ -13,7 +13,7 @@
 </head>
 <body>
 	<header>
-		<h1>Tervetuloa etusivulle</h1>
+		<h1>Tavarat</h1>
 		<img th:src="@{/styles/avatar.jpg}" alt="Avatar" class="avatar">
 	</header>
 
@@ -21,8 +21,10 @@
 		<!--Tähän tulee listaus kaikista Boxeista jotka ovat julkisia-->
 		<!--Tai ehkä top navigointi missä on kirjaudu sisään, rekisteröidy ja etsi ominaisuus-->
 		<!-- Vois vielä lisätä koti-painikkeen -->
-		<!-- 			<a class="active" href=/home>Koti</a> -->
-		<a class="active">Kirjaudu sisään</a> <a>Rekisteröidy</a>
+
+
+		<a class="active" href="login.html">Kirjaudu sisään</a> <a
+			href="register.html">Rekisteröidy</a>
 		<div class="search-container">
 			<form action="/action_page.php">
 				<input type="text" placeholder="Etsi.." name="search">
@@ -33,25 +35,22 @@
 		</div>
 	</div>
 
-	<h1>Tähän tulee listaus kaikista laatikoista</h1>
+	<h1></h1>
 	<br>
 	<table>
 		<tr>
 			<th>Id</th>
 			<th>Name</th>
 			<th>Description</th>
-			<th>Location</th>
-			
-			<th>Items</th>
-		</tr>
+	
 
-		<tr th:each="box : ${boxes}" th:if="${box.bPrivate} == false">
-			<td th:text="${box.boxId}">Id</td>
-			<td th:text="${box.bName}">Name</td>
-			<td th:text="${box.bDesc}">Description</td>
-			<td th:text="${box.bLocation}">Location</td>
+		</tr>
+		<tr th:each="category : ${categories}">
+			<td th:text="${category.cateId}">Id</td>
+			<td th:text="${category.cName}">Name</td>
+			<td th:text="${category.cDesc}">Description</td>
 		
-			<td><a th:href="@{/items/{id}(id=${box.boxId})}">Items</a></td>
+			
 		</tr>
 	</table>
 </body>
