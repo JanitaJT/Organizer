@@ -1,6 +1,6 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org">
-<!--  xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5"> -->
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
 <title>Organizer</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -22,7 +22,8 @@
 		<!--Tai ehkä top navigointi missä on kirjaudu sisään, rekisteröidy ja etsi ominaisuus-->
 		<!-- Vois vielä lisätä koti-painikkeen -->
 		<!-- 			<a class="active" href=/home>Koti</a> -->
-		<a class="active">Kirjaudu sisään</a> <a>Rekisteröidy</a>
+		<a class="active" href="/login">Kirjaudu sisään</a>
+		 <a class="active" href="/signup">Rekisteröidy</a>
 		<div class="search-container">
 			<form action="/action_page.php">
 				<input type="text" placeholder="Etsi.." name="search">

@@ -1,0 +1,72 @@
+header {
+	font-family: sans-serif;
+	color: #4d4d4d;
+	text-align: center;
+	padding: 16px;
+	background-color: #f2f2f2;
+}
+
+body {
+	font-family: Arial, Helvetica, sans-serif;
+	background-color: white;
+}
+
+/* Bordered form */
+form {
+	border: 16px solid #666666;
+	width: 30%;
+	margin-left: auto;
+	margin-right: auto;
+	text-align: left;
+	background-color: #f2f2f2;
+}
+
+/* Full-width inputs */
+input[type=text], input[type=password] {
+	width: 100%;
+	padding: 12px 20px;
+	margin: 8px 0;
+	display: inline-block;
+	border: 1px solid #ccc;
+	box-sizing: border-box;
+}
+
+button {
+	padding: 10px 24px;
+	background-color: #f2f2f2;
+}
+
+a:link, a:visited {
+	background-color: #f2f2f2;
+	color: black;
+	border: 2px solid black;
+	padding: 9px 30px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+
+}
+
+a:hover, a:active {
+	opacity: 0.9;
+	  background-color: #ff4d4d;
+}
+
+button:hover {
+	opacity: 0.9;
+	  background-color:  #808080;
+}
+
+.imgcontainer {
+	text-align: center;
+	margin: 24px 0 12px 0;
+}
+
+img.avatar {
+	width: 40%;
+	border-radius: 50%;
+}
+
+.container {
+	padding: 16px;
+}

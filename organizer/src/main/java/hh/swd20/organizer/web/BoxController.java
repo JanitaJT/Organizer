@@ -19,12 +19,22 @@ public class BoxController {
 	@Autowired
 	BoxRepository boxRepository;
 
-	@RequestMapping(value = "/home", method = RequestMethod.GET)
-	public String loginPage(Model model) {
+
+	@RequestMapping(value ="/home", method = RequestMethod.GET)
+	public String homePage(Model model) {
 		List<Box> boxes = (List<Box>) boxRepository.findAll();
 		model.addAttribute("boxes", boxes);
 		return "home";
 
 	}
+	
+
+	@RequestMapping(value ="/logged", method = RequestMethod.GET)
+	public String loggedPage(Model model) {
+		List<Box> boxes2 = (List<Box>) boxRepository.findAll();
+		model.addAttribute("boxes2", boxes2);
+		return "logged";
+
+	}	
 
 }

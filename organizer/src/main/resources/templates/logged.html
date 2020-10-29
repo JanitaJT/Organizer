@@ -13,7 +13,7 @@
 </head>
 <body>
 	<header>
-		<h1>Tavarat</h1>
+		<h1 th:inline="text">Tervehdys [[${#httpServletRequest.remoteUser}]]!</h1>
 		<img th:src="@{/styles/avatar.jpg}" alt="Avatar" class="avatar">
 	</header>
 
@@ -21,12 +21,10 @@
 		<!--Tähän tulee listaus kaikista Boxeista jotka ovat julkisia-->
 		<!--Tai ehkä top navigointi missä on kirjaudu sisään, rekisteröidy ja etsi ominaisuus-->
 		<!-- Vois vielä lisätä koti-painikkeen -->
-
-
-		<a class="active" href="login.html">Kirjaudu sisään</a> <a
-			href="register.html">Rekisteröidy</a>
+		<!-- 			<a class="active" href=/home>Koti</a> -->
+		<a class="active" href="/home">Kirjaudu ulos</a>
 		<div class="search-container">
-			<form action="/action_page.php">
+			<form >
 				<input type="text" placeholder="Etsi.." name="search">
 				<button class="button-search" type="submit">
 					<i class="fa fa-search"></i>
@@ -35,24 +33,26 @@
 		</div>
 	</div>
 
-	<h1></h1>
+	<h1>Tähän tulee listaus kaikista laatikoista</h1>
 	<br>
 	<table>
 		<tr>
 			<th>Id</th>
 			<th>Name</th>
-			<th>Owner</th>
+			<th>Description</th>
+			<th>Location</th>
 			<th>Private</th>
-			<th>Category</th>
-
+			<th>Items</th>
 		</tr>
-		<tr th:each="item : ${items}">
-			<td th:text="${item.itemId}">Id</td>
-			<td th:text="${item.iName}">Name</td>
-			<td th:text="${item.iOwner}">Owner</td>
-			<td th:text="${item.iPrivate}">Private</td>
-			<td th:text="${item.category.cName}">Category</td>
-			
+
+		<tr th:each="box : ${boxes2}">
+			<td th:text="${box.boxId}">Id</td>
+			<td th:text="${box.bName}">Name</td>
+			<td th:text="${box.bDesc}">Description</td>
+			<td th:text="${box.bLocation}">Location</td>
+			<td th:text="${box.bPrivate}">Private</td>
+
+			<td><a th:href="@{/items/{id}(id=${box.boxId})}">Items</a></td>
 		</tr>
 	</table>
 </body>

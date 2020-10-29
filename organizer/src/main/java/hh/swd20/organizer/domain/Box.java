@@ -1,18 +1,22 @@
 package hh.swd20.organizer.domain;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
-
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import javax.persistence.Table;
+import hh.swd20.organizer.domain.User;
 
 @Entity
+@Table(name = "Box")
 public class Box {
 
 	@Id
@@ -25,7 +29,10 @@ public class Box {
 
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "box")
 	private List<Item> items;
-	
+
+	@ManyToMany(mappedBy = "boxes")
+	private Set<User> users = new HashSet<>();
+
 	public Box(Long boxId, String bName, String bDesc, Boolean bPrivate, String bLocation) {
 		super();
 		this.boxId = boxId;
@@ -91,7 +98,6 @@ public class Box {
 	public void setbLocation(String bLocation) {
 		this.bLocation = bLocation;
 	}
-	
 
 	public List<Item> getItems() {
 		return items;
@@ -99,6 +105,14 @@ public class Box {
 
 	public void setItems(List<Item> items) {
 		this.items = items;
+	}
+
+	public Set<User> getUsers() {
+		return users;
+	}
+
+	public void setUsers(Set<User> users) {
+		this.users = users;
 	}
 
 	@Override

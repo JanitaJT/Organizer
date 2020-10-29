@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Add User</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="../styles/signandlogin.css" th:ref="@{/styles/signandlogin.css}"
+	type="text/css" rel="stylesheet" />
+</head>
+<body>
+	<header class="header">
+		<h1>Rekisteröidy</h1>
+	</header>
+	<br>
+	<div>
+		<form th:object="${signupform}" th:action="@{/saveuser}" action="#"
+			method="post">
+			<div class="imgcontainer">
+				<img th:src="@{/styles/avatar.jpg}" alt="Avatar" class="avatar">
+			</div>
+			<div class="container">
+
+				<!--required poistettu toistaiseksi-->
+				<div>
+				<label>Etunimi <input type="text" th:field="*{firstname}"
+					placeholder="Anna etunimi" /> 
+				</label>
+				</div>
+				<div>
+				<label Sukunimi <input type="text"
+					th:field="*{lastname}" placeholder="Anna sukunimi"  />
+				</label> 
+				</div>
+				<div>
+				<label>Sukupuoli <input type="text"
+					th:field="*{gender}" placeholder="Anna sukupuoli"
+					/>
+				</label>
+				</div>
+					 <br> 
+				<div>
+				<label>Käyttäjänimi
+					<input type="text" th:field="*{username}"
+					placeholder="Anna käyttäjänimesi"/>
+				</label>
+				<p th:if="${#fields.hasErrors('username')}" th:errors="*{username}">Username
+					Error</p>
+					</div>
+				<br>
+				<div>
+				<label>Sähköposti<input
+					th:field="*{email}" type="text"
+					placeholder="Anna sähköposti"/>
+					</label>
+					</div> 
+				<br>
+				<div>
+				<label>Salsana<input
+					th:field="*{password}" type="password"
+					placeholder="Anna salasanasi"/>
+					</label>
+					</div>
+					<div>
+				 <label>Varmista salasana <input th:field="*{passwordCheck}" type="password"
+					placeholder="Anna salasanasi"/>
+				</label> 
+				<p th:if="${#fields.hasErrors('passwordCheck')}"
+						th:errors="*{passwordCheck}">Password match error</p>
+						</div>
+				    <button type="submit">Tallenna</button>
+				 <a href="/home" class="button">Peruuta</a>
+				<br>
+			</div>
+		</form>
+	</div>
+</body>
+</html>

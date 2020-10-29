@@ -13,6 +13,8 @@ import hh.swd20.organizer.domain.Category;
 import hh.swd20.organizer.domain.CategoryRepository;
 import hh.swd20.organizer.domain.Item;
 import hh.swd20.organizer.domain.ItemRepository;
+import hh.swd20.organizer.domain.User;
+import hh.swd20.organizer.domain.UserRepository;
 
 @SpringBootApplication
 public class OrganizerApplication {
@@ -24,7 +26,7 @@ public class OrganizerApplication {
 	}
 	
 	@Bean
-	public CommandLineRunner boxDemo(BoxRepository boxRepository, ItemRepository itemRepository, CategoryRepository categoryRepository) {
+	public CommandLineRunner boxDemo(BoxRepository boxRepository, ItemRepository itemRepository, CategoryRepository categoryRepository, UserRepository userRepository) {
 		return (args) -> {
 			log.info("Test data");
 			
@@ -41,6 +43,11 @@ public class OrganizerApplication {
 			Item item1 = new Item("Nahkatakki", "Janita", true, box1, cate2);
 			itemRepository.save(item1);
 			
+			User user1 = new User("Janita", "Toivola", "Nainen", "HattiVatti", "$2b$10$I19tmTMN1rFq4.guoJc1heLtSyyFXdgvoklEUVhg9JQkcPSrztUxG", "hatti.vatti@gmail.com", "USER");
+			User user2 = new User("Aatu", "Aatunen", "Mies", "Admin", "$2b$10$uDp.WeBdo8xKL2dAl740FOEyk17zW7Xd69sdux38o1ZYmB05CM5la", "admin.admin@gmail,com", "ADMIN");
+			userRepository.save(user1);
+			userRepository.save(user2);
+			
 			log.info("Fetch boxes");
 			for(Box box : boxRepository.findAll()) {
 				log.info(box.toString());
@@ -54,6 +61,11 @@ public class OrganizerApplication {
 			log.info("Fetch Categories");
 			for (Category category : categoryRepository.findAll()) {
 				log.info(category.toString());
+			}
+			
+			log.info("Fetch users");
+			for (User user : userRepository.findAll()) {
+				log.info(user.toString());
 			}
 		};
 		
