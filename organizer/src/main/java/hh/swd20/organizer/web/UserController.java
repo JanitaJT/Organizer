@@ -40,7 +40,8 @@ public class UserController {
 
 	@RequestMapping(value = "/saveuser", method = RequestMethod.POST)
 	public String saveUser(@Valid @ModelAttribute("signUpForm") SignUpForm signUpForm, BindingResult bindingResult) {
-		if (bindingResult.hasErrors()) {
+		System.out.println(signUpForm);
+		if (!bindingResult.hasErrors()) {
 			if (signUpForm.getPassword().equals(signUpForm.getPasswordCheck())) {
 				String pwd = signUpForm.getPassword();
 				BCryptPasswordEncoder bc = new BCryptPasswordEncoder();

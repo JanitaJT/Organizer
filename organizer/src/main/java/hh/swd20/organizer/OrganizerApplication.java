@@ -37,6 +37,8 @@ public class OrganizerApplication {
 
 			Category cate1 = new Category("Kengät", "kesäkenkiä");
 			Category cate2 = new Category("Kesä", "Kesä takkeja");
+			Category cate3 = new Category("Talvi", "Talvivaatteita");
+			categoryRepository.save(cate3);
 			categoryRepository.save(cate1);
 			categoryRepository.save(cate2);
 			

@@ -35,6 +35,7 @@
 
 	<h1>Tähän tulee listaus kaikista laatikoista</h1>
 	<br>
+	 <a href="/addbox" class="button">Lisää Boxi</a>
 	<table>
 		<tr>
 			<th>Id</th>
@@ -43,6 +44,8 @@
 			<th>Location</th>
 			<th>Private</th>
 			<th>Items</th>
+			<th>Delete</th>
+			<th>Edit</th>
 		</tr>
 
 		<tr th:each="box : ${boxes2}">
@@ -51,8 +54,10 @@
 			<td th:text="${box.bDesc}">Description</td>
 			<td th:text="${box.bLocation}">Location</td>
 			<td th:text="${box.bPrivate}">Private</td>
-
 			<td><a th:href="@{/items/{id}(id=${box.boxId})}">Items</a></td>
+			<td><a th:href="@{/deletebox/{id}(id=${box.boxId})}">Delete</a>
+			<td><a th:href="@{/editbox/{id}(id=${box.boxId})}">Edit</a></td>
+				 <td><a th:href="@{/additem/{id}(id=${box.boxId})}" class="button">Lisää tavara</a></td>
 		</tr>
 	</table>
 </body>

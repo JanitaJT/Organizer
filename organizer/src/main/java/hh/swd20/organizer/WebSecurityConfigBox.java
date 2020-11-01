@@ -33,6 +33,7 @@ public class WebSecurityConfigBox extends WebSecurityConfigurerAdapter{
 		http.authorizeRequests().antMatchers("/styles/**").permitAll()
 		.and().authorizeRequests().antMatchers("/signup","/home", "/items","/saveuser","/items/{id}", "/h2-console/**").permitAll()
 		.and().csrf().ignoringAntMatchers("/h2-console/**")
+//		.and().authorizeRequests().antMatchers("/auth/addbox").hasRole("USER")
 		.and()
 		.headers().frameOptions().sameOrigin()
 		.and().authorizeRequests().anyRequest().authenticated()
