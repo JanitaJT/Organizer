@@ -13,7 +13,8 @@
 </head>
 <body>
 	<header>
-		<h1 th:inline="text">Tervehdys [[${#httpServletRequest.remoteUser}]]!</h1>
+		<h1 th:inline="text">Tervehdys
+			[[${#httpServletRequest.remoteUser}]]!</h1>
 		<img th:src="@{/styles/avatar.jpg}" alt="Avatar" class="avatar">
 	</header>
 
@@ -22,9 +23,12 @@
 		<!--Tai ehkä top navigointi missä on kirjaudu sisään, rekisteröidy ja etsi ominaisuus-->
 		<!-- Vois vielä lisätä koti-painikkeen -->
 		<!-- 			<a class="active" href=/home>Koti</a> -->
-		<a class="active" href="/home">Kirjaudu ulos</a>
+		<a class="active" href="/home">Kirjaudu ulos</a> 
+			<a class="active" href="/cates">Kategoriat</a> 
+		<a class="active" href="/addcategory">Lisää kategoria</a> 
+		<a class="active" href="/addbox">Lisää laatikko</a>
 		<div class="search-container">
-			<form >
+			<form>
 				<input type="text" placeholder="Etsi.." name="search">
 				<button class="button-search" type="submit">
 					<i class="fa fa-search"></i>
@@ -35,7 +39,7 @@
 
 	<h1>Tähän tulee listaus kaikista laatikoista</h1>
 	<br>
-	 <a href="/addbox" class="button">Lisää Boxi</a>
+	<!-- 	 <a href="/addbox" class="button">Lisää Boxi</a> -->
 	<table>
 		<tr>
 			<th>Id</th>
@@ -43,9 +47,10 @@
 			<th>Description</th>
 			<th>Location</th>
 			<th>Private</th>
-			<th>Items</th>
 			<th>Delete</th>
 			<th>Edit</th>
+			<td>Items</td>
+			<td>Add Items</td>
 		</tr>
 
 		<tr th:each="box : ${boxes2}">
@@ -54,10 +59,11 @@
 			<td th:text="${box.bDesc}">Description</td>
 			<td th:text="${box.bLocation}">Location</td>
 			<td th:text="${box.bPrivate}">Private</td>
-			<td><a th:href="@{/items/{id}(id=${box.boxId})}">Items</a></td>
 			<td><a th:href="@{/deletebox/{id}(id=${box.boxId})}">Delete</a>
 			<td><a th:href="@{/editbox/{id}(id=${box.boxId})}">Edit</a></td>
-				 <td><a th:href="@{/additem/{id}(id=${box.boxId})}" class="button">Lisää tavara</a></td>
+			<td><a th:href="@{/items/{id}(id=${box.boxId})}">Items</a></td>
+			<td><a th:href="@{/additem/{id}(id=${box.boxId})}">Lisää tavara</a></td>
+			
 		</tr>
 	</table>
 </body>

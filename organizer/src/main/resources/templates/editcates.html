@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+<title>Edit Box</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="../styles/signandlogin.css"
+	th:ref="@{/styles/signandlogin.css}" type="text/css" rel="stylesheet" />
+</head>
+<body>
+	
+	<form action="#" th:action="@{/savecate}" th:object=${category} method="post">
+		<div class="imgcontainer">
+			<img th:src="@{/styles/avatar.jpg}" alt="Avatar" class="avatar">
+			<p>Muokkaa kategoriaa</p>
+		</div>
+		<div class="container">
+
+			<input type="hidden" th:field="${category.cateId}" />
+			<div>
+				<label>Nimi<input type="text" th:field="${category.cName}"
+					placeholder="Anna nimi" />
+				</label>
+			</div>
+			<div>
+				<label>Kuvaus<input type="text" th:field="${category.cDesc}"
+					placeholder="Anna kuvaus" />
+				</label>
+			</div>
+	
+				    <button type="submit">Tallenna</button>
+				 <a href="/cates" class="button">Peruuta</a>
+		</div>
+
+	</form>
+</body>
+</html>

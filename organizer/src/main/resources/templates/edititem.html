@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+<title>Edit Box</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="../styles/signandlogin.css"
+	th:ref="@{/styles/signandlogin.css}" type="text/css" rel="stylesheet" />
+</head>
+<body>
+
+	<form action="#" th:action="@{/saveitem}" th:object=${item}
+		method="post">
+		<div class="imgcontainer">
+			<img th:src="@{/styles/avatar.jpg}" alt="Avatar" class="avatar">
+			<p>Muokkaa kategoriaa</p>
+		</div>
+		<div class="container">
+	<input type="hidden" th:field="*{box}" />
+			<input type="hidden" th:field="${item.itemId}" />
+			<div>
+				<label>Nimi<input type="text" th:field="${item.iName}"
+					placeholder="Anna nimi" />
+				</label>
+			</div>
+			<div>
+				<label>Omistaja<input type="text" th:field="${item.iOwner}"
+					placeholder="Anna omistaja" />
+				</label>
+			</div>
+			<div>
+
+				<label>Public <input type="radio"
+					th:field="${item.iPrivate}" name="public" value="false" />
+				</label> <br> <label>Private <input type="radio"
+					th:field="${item.iPrivate}" name="private" value="true" />
+				</label>
+
+
+			</div>
+			<br> <label for="cates">Kategoria</label> <select id="cates"
+				th:field="*{category}" class="form-control">
+				<option th:each="category : ${categories}"
+					th:value="${category.cateId}" th:text="${category.cName}"></option>
+			</select> 
+			<br>
+			<br>
+
+			<button type="submit">Tallenna</button>
+			<a href="/items" class="button">Peruuta</a>
+
+		</div>
+
+	</form>
+</body>
+</html>

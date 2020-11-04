@@ -23,7 +23,8 @@
 		<!-- Vois vielä lisätä koti-painikkeen -->
 
 
-		
+			<a class="active" href="/logged">Koti</a>
+			<a class="active" href="/home">Kirjaudu ulos</a>
 		<div class="search-container">
 			<form action="/action_page.php">
 				<input type="text" placeholder="Etsi.." name="search">
@@ -51,6 +52,11 @@
 			<td th:text="${item.iOwner}">Owner</td>
 			<td th:text="${item.iPrivate}">Private</td>
 			<td th:text="${item.category.cName}">Category</td>
+					<td><a th:href="@{/deleteitem/{id}(id=${item.itemId})}">Delete</a>
+	<td><a th:href="@{/edititem/{id}(id=${item.itemId})}">Muokkaa tavraa</a></td>
+				
+			
+			
 			
 		</tr>
 	</table>

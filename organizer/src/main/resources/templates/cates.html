@@ -10,10 +10,11 @@
 <link href="../styles/home.css" th:ref="@{/styles/home.css}"
 	type="text/css" rel="stylesheet" />
 
+
 </head>
 <body>
 	<header>
-		<h1>Tavarat</h1>
+		
 		<img th:src="@{/styles/avatar.jpg}" alt="Avatar" class="avatar">
 	</header>
 
@@ -22,9 +23,8 @@
 		<!--Tai ehkä top navigointi missä on kirjaudu sisään, rekisteröidy ja etsi ominaisuus-->
 		<!-- Vois vielä lisätä koti-painikkeen -->
 
-
-		<a class="active" href="login.html">Kirjaudu sisään</a> <a
-			href="register.html">Rekisteröidy</a>
+			<a class="active" href="/logged">Koti</a>
+			<a class="active" href="/home">Kirjaudu ulos</a>
 		<div class="search-container">
 			<form action="/action_page.php">
 				<input type="text" placeholder="Etsi.." name="search">
@@ -37,6 +37,7 @@
 
 	<h1></h1>
 	<br>
+	
 	<table>
 		<tr>
 			<th>Id</th>
@@ -49,6 +50,7 @@
 			<td th:text="${category.cateId}">Id</td>
 			<td th:text="${category.cName}">Name</td>
 			<td th:text="${category.cDesc}">Description</td>
+		<td><a th:href="@{/editcate/{id}(id=${category.cateId})}">Edit</a></td>
 		
 			
 		</tr>
