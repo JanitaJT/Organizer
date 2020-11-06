@@ -8,6 +8,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 
 @Entity
 public class Category {
@@ -15,7 +17,13 @@ public class Category {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long cateId;
+	
+	@NotEmpty(message="Nimi ei saa olla tyhjä!")
+	@Size(min=2, max=20,  message="Nimen pitää olla 2-20 merkkiä pitkä!")
 	private String cName;
+	
+	
+	@Size(min=2, max=40, message="Kuvauksen pitää olla 2-40 merkkiä pitkä!")
 	private String cDesc;
 
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "category")

@@ -6,6 +6,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 
 
@@ -15,8 +18,15 @@ public class Item {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long itemId;
+	
+	@NotEmpty(message="Nimi ei saa olla tyhjä!")
+	@Size(min=2, max=20, message="Nimen pitää olla 2-20 merkkiä pitkä!")
 	private String iName;
+	
+	@Size(min=2, max=20, message="Omistajan nimi pitää olla 2-20 merkkiä pitkä!")
 	private String iOwner;
+	
+	@NotNull(message="Vaihtoehto ei voi olla tyhjä!")
 	private Boolean iPrivate;
 	
 	@ManyToOne

@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 
 import javax.persistence.GeneratedValue;
@@ -13,6 +14,10 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
 import hh.swd20.organizer.domain.User;
 
 @Entity
@@ -22,9 +27,18 @@ public class Box {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long boxId;
+	
+	@NotEmpty(message="Nimi ei saa olla tyhjä!")
+	@Size(min=2, max=20, message="Nimen pitää olla 2-20 merkkiä pitkä!")
 	private String bName;
+	
+	@Size(min=2, max=40, message="Kuvauksen pitää olla 2-40 merkkiä pitkä!")
 	private String bDesc;
+	
+	@NotNull(message="Vaihtoehto ei voi olla tyhjä!")
 	private Boolean bPrivate;
+	
+	@Size(min=2, max=20,  message="Kuvauksen pitää olla 2-40 merkkiä pitkä!")
 	private String bLocation;
 
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "box")
@@ -117,8 +131,8 @@ public class Box {
 
 	@Override
 	public String toString() {
-		return "Box [boxId=" + boxId + ", bName=" + bName + ", bDesc=" + bDesc + ", bPrivate=" + bPrivate
-				+ ", bLocation=" + bLocation + "]";
+		return "Box [boxId=" + boxId + ", bName=" + this.getbName() + ", bDesc=" + this.getbDesc() + ", bPrivate=" + this.getbPrivate()
+				+ ", bLocation=" + this.getbLocation() + "]";
 	}
 
 }

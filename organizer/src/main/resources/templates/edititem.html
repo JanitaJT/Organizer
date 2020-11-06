@@ -5,7 +5,7 @@
 <title>Edit Box</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link href="../styles/signandlogin.css"
+<link href="../../styles/signandlogin.css"
 	th:ref="@{/styles/signandlogin.css}" type="text/css" rel="stylesheet" />
 </head>
 <body>
@@ -14,10 +14,11 @@
 		method="post">
 		<div class="imgcontainer">
 			<img th:src="@{/styles/avatar.jpg}" alt="Avatar" class="avatar">
-			<p>Muokkaa kategoriaa</p>
+			<p>Muokkaa esineitä</p>
 		</div>
 		<div class="container">
-	<input type="hidden" th:field="*{box}" />
+			<input type="hidden" th:field="*{box}" />
+			<!--  jotta tiedetään mihin laattikkoon esine kuuluu -->
 			<input type="hidden" th:field="${item.itemId}" />
 			<div>
 				<label>Nimi<input type="text" th:field="${item.iName}"
@@ -31,27 +32,20 @@
 			</div>
 			<div>
 
-				<label>Public <input type="radio"
+				<label>Julkinen <input type="radio"
 					th:field="${item.iPrivate}" name="public" value="false" />
-				</label> <br> <label>Private <input type="radio"
+				</label> <br> <label>Yksityinen <input type="radio"
 					th:field="${item.iPrivate}" name="private" value="true" />
 				</label>
-
-
 			</div>
 			<br> <label for="cates">Kategoria</label> <select id="cates"
 				th:field="*{category}" class="form-control">
 				<option th:each="category : ${categories}"
 					th:value="${category.cateId}" th:text="${category.cName}"></option>
-			</select> 
-			<br>
-			<br>
-
+			</select> <br> <br>
 			<button type="submit">Tallenna</button>
-			<a href="/items" class="button">Peruuta</a>
-
+			<a href="/auth/itemit" class="button">Peruuta</a>
 		</div>
-
 	</form>
 </body>
 </html>

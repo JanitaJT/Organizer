@@ -1,53 +1,67 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
 <title>Add User</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link href="../styles/signandlogin.css" th:ref="@{/styles/signandlogin.css}"
-	type="text/css" rel="stylesheet" />
+<link href="../../styles/signandlogin.css"
+	th:ref="@{/styles/signandlogin.css}" type="text/css" rel="stylesheet" />
 </head>
 <body>
-	<header class="header">
-		<h1>Lisää Tavara</h1>
-	</header>
 	<br>
 	<div>
-		<form action="#" th:action="@{/saveitem}" th:object=${item} method="post">
+
+		<!-- 	Uuden esineen lisäys -->
+
+		<form action="#" th:action="@{/saveitem}" th:object=${item}
+			method="post">
 			<div class="imgcontainer">
 				<img th:src="@{/styles/avatar.jpg}" alt="Avatar" class="avatar">
+					<p>Lisää esine</p>
 			</div>
 			<div class="container">
 
-				<!--required poistettu toistaiseksi-->
+	
+
 				<div>
-				<label>Nimi <input type="text" th:field="*{iName}"
-					placeholder="Anna nimi" /> 
-				</label>
-				</div>
-				<div>
-				<label>Omistaja <input type="text" th:field="*{iOwner}"
-					 placeholder="Anna omistaja"  />
-				</label> 
-				</div>
-				<div>
-			<label>Public <input type="radio" th:field="*{iPrivate}"
-				 name="public" value="false"  />
+					<p th:if="${#fields.hasErrors('iName')}" th:errors="*{iName}">Error</p>
+					<label>Nimi <input type="text" th:field="*{iName}"
+						placeholder="Anna nimi 2-20 merkkiä" />
 					</label>
+				</div>
+				<div>
+				<p th:if="${#fields.hasErrors('iOwner')}" th:errors="*{iOwner}">Error</p>
+					<label>Omistaja <input type="text" th:field="*{iOwner}"
+						placeholder="Anna omistaja 2-20 merkkiä" />
+					</label>
+				</div>
+				<div>
+				<p th:if="${#fields.hasErrors('iPrivate')}" th:errors="*{iPrivate}">Error</p>
+					<label>Julkinen <input type="radio" th:field="*{iPrivate}"
+						name="public" value="false" />
+					</label> <br> <label>Yksityinen <input type="radio"
+						th:field="*{iPrivate}" name="private" value="true" />
+					</label>
+					<input type="hidden" th:field="*{box}" /> 
+					<br> 
+					<div>
 					<br>
-					<label>Private
-					<input type="radio" th:field="*{iPrivate}"
-				 name="private" value="true"  />
-			</label>
-			<input type="hidden" th:field="*{box}" />
-			<br>
-			<label for="cates">Kategoria</label>
-				<select id="cates" th:field="*{category}" class="form-control">
-				<option th:each="category : ${categories}" th:value="${category.cateId}" th:text="${category.cName}"></option></select>
-				 <br>
-				 <button type="submit">Tallenna</button>
-				 <a href="/logged" class="button">Peruuta</a>
-				<br>
+					<label
+						for="cates">Kategoria</label>
+						<div  style= width:200px >
+						 <select id="cates"
+						th:field="*{category}" class="form-control">
+						<option th:each="category : ${categories}"
+							th:value="${category.cateId}" th:text="${category.cName}"></option>
+					</select>
+					</div>
+					</div>
+					
+					<br>
+					<br>
+					<button type="submit">Tallenna</button>
+					<a href="/auth/logged" class="button">Peruuta</a> <br>
 				</div>
 			</div>
 		</form>

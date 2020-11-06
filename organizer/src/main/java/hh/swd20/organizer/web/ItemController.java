@@ -2,10 +2,13 @@ package hh.swd20.organizer.web;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -32,16 +35,18 @@ public class ItemController {
 	@Autowired
 	CategoryRepository categoryRepository;
 
-	@RequestMapping(value = "/items", method = RequestMethod.GET)
-	public String itemPage(Model model) {
-		List<Item> items = (List<Item>) itemRepository.findAll();
-		model.addAttribute("items", items);
-		return "items";
-	}
-
-	// Haetaan boxId:llä siihen kuuluvat itemit
+//	@RequestMapping(value = "/items", method = RequestMethod.GET)
+//	public String itemPage(Model model) {
+//		List<Item> items = (List<Item>) itemRepository.findAll();
+//		model.addAttribute("items", items);
+//		return "items";
+//	}
+	
+	// Haetaan boxid:llä siihen kuuluvat itemit home-sivulle
+	
 	@RequestMapping(value = "/items/{id}", method = RequestMethod.GET)
-	public String findItems(@PathVariable("id") Long boxId, Model model) {
+
+	public String findItemsHome(@PathVariable("id") Long boxId, Model model) {
 		Box box = boxRepository.findById(boxId).get();
 		List<Item> items = box.getItems();
 		System.out.println(items);
@@ -49,7 +54,10 @@ public class ItemController {
 		return "items";
 	}
 
-	@RequestMapping(value = "/additem/{id}", method = RequestMethod.GET)
+	// Tyhjä itemilomake
+	
+	@RequestMapping(value = "/auth/additem/{id}", method = RequestMethod.GET)
+	@PreAuthorize("hasAnyAuthority('ADMIN', 'USER')")
 	public String addItem(@PathVariable("id") Long boxId, Model model) {
 		Box box = boxRepository.findById(boxId).get();
 		Item item = new Item();
@@ -59,15 +67,49 @@ public class ItemController {
 		return "additem";
 
 	}
+	
+	// Tallennetaan uusi itemi
 
 	@RequestMapping(value = "/saveitem", method = RequestMethod.POST)
-	public String saveItem(@ModelAttribute Item item) {
-
+	public String saveItem(@Valid @ModelAttribute Item item, BindingResult bindingResult, Model model) {
+		if (bindingResult.hasErrors()) {
+			model.addAttribute("item", item);
+			model.addAttribute("categories", categoryRepository.findAll());
+			return "additem";
+		}else {
 		itemRepository.save(item);
-		return "redirect:logged";
+		model.addAttribute("item", item);
+		model.addAttribute("categories", categoryRepository.findAll());
+		return "redirect:/auth/itemit";
+		}
+	}
+	
+	//Listaa itemit itemslogged-sivulle
+	
+	@RequestMapping(value = "/auth/itemit", method = RequestMethod.GET)
+	@PreAuthorize("hasAnyAuthority('ADMIN', 'USER')")
+	public String itemPageLogged(Model model) {
+		List<Item> itemit = (List<Item>) itemRepository.findAll();
+		model.addAttribute("itemit", itemit);
+		return "itemslogged";
+	}
+	
+	// Haetaan boxid:llä siihen kuuluvat itemit logged sivulle
+	
+	@RequestMapping(value = "/auth/itemit/{id}", method = RequestMethod.GET)
+	@PreAuthorize("hasAnyAuthority('ADMIN', 'USER')")
+	public String findItemsLogged(@PathVariable("id") Long boxId, Model model) {
+		Box box = boxRepository.findById(boxId).get();
+		List<Item> itemit = box.getItems();
+		System.out.println(itemit);
+		model.addAttribute("itemit", itemit);
+		return "itemslogged";
 	}
 
-	@RequestMapping(value = "/edititem/{id}", method = RequestMethod.GET)
+	// Itemin editointi
+	
+	@RequestMapping(value = "/auth/edititem/{id}", method = RequestMethod.GET)
+	@PreAuthorize("hasAnyAuthority('ADMIN', 'USER')")
 	public String editItem(@PathVariable("id") Long itemId, Model model) {
 		Item item = itemRepository.findById(itemId).get();
 		model.addAttribute("item", item);
@@ -75,10 +117,13 @@ public class ItemController {
 		return "edititem";
 	}
 	
-	@RequestMapping(value="/deleteitem/{id}", method = RequestMethod.GET)
+	// Itemin poisto
+	
+	@RequestMapping(value="/auth/deleteitem/{id}", method = RequestMethod.GET)
+	@PreAuthorize("hasAnyAuthority('ADMIN', 'USER')")
 	public String deleteItem(@PathVariable("id") Long itemId, Model model) {
 		itemRepository.deleteById(itemId);
-		return "redirect:../items";
+		return "redirect:/auth/itemit";
 	}
 
 }

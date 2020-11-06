@@ -19,6 +19,8 @@ import hh.swd20.organizer.domain.UserRepository;
 public class UserController {
 	@Autowired
 	private UserRepository userRepository;
+	
+	
 
 	@RequestMapping(value = "/signup")
 	public String addUser(Model model) {
@@ -32,10 +34,6 @@ public class UserController {
 		return "login";
 	}
 	
-//	@RequestMapping(value = "/logged", method = RequestMethod.GET)
-//	public String loggedPage() {
-//		return "logged";
-//	}
 
 
 	@RequestMapping(value = "/saveuser", method = RequestMethod.POST)

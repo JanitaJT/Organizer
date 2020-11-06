@@ -4,8 +4,8 @@
 <head>
 <title>Organizer</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<!-- <link rel="stylesheet" -->
+<!-- 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link href="../styles/home.css" th:ref="@{/styles/home.css}"
 	type="text/css" rel="stylesheet" />
@@ -20,50 +20,46 @@
 
 	<div class="topnav">
 		<!--Tähän tulee listaus kaikista Boxeista jotka ovat julkisia-->
-		<!--Tai ehkä top navigointi missä on kirjaudu sisään, rekisteröidy ja etsi ominaisuus-->
-		<!-- Vois vielä lisätä koti-painikkeen -->
-		<!-- 			<a class="active" href=/home>Koti</a> -->
-		<a class="active" href="/home">Kirjaudu ulos</a> 
-			<a class="active" href="/cates">Kategoriat</a> 
-		<a class="active" href="/addcategory">Lisää kategoria</a> 
-		<a class="active" href="/addbox">Lisää laatikko</a>
-		<div class="search-container">
-			<form>
-				<input type="text" placeholder="Etsi.." name="search">
-				<button class="button-search" type="submit">
-					<i class="fa fa-search"></i>
-				</button>
-			</form>
-		</div>
+		<!--Tai ehkä top navigointi missä on kirjaudu sisään, rekisteröidy-->
+		<a class="active" href="/home">Kirjaudu ulos</a> <a class="active"
+			href="/auth/cates">Kategoriat</a> <a class="active" href="/auth/addcategory">Lisää
+			kategoria</a> <a class="active" href="/auth/addbox">Lisää laatikko</a>
+		<!-- 		<div class="search-container"> -->
+		<!-- 			<form> -->
+		<!-- 				<input type="text" placeholder="Etsi.." name="search"> -->
+		<!-- 				<button class="button-search" type="submit"> -->
+		<!-- 					<i class="fa fa-search"></i> -->
+		<!-- 				</button> -->
+		<!-- 			</form> -->
+		<!-- 		</div> -->
 	</div>
-
-	<h1>Tähän tulee listaus kaikista laatikoista</h1>
+	<header class="header">
+		<h1>Listaus kaikista laatikoista</h1>
+	</header>
 	<br>
-	<!-- 	 <a href="/addbox" class="button">Lisää Boxi</a> -->
 	<table>
 		<tr>
 			<th>Id</th>
-			<th>Name</th>
-			<th>Description</th>
-			<th>Location</th>
-			<th>Private</th>
-			<th>Delete</th>
-			<th>Edit</th>
-			<td>Items</td>
-			<td>Add Items</td>
+			<th>Nimi</th>
+			<th>Kuvaus</th>
+			<th>Paikka</th>
+			<th>Julkinen/ykstityinen</th>
+			<th>Poista</th>
+			<th>Muokkaa</th>
+			<td>Esineet</td>
+			<td>Lisää esine</td>
 		</tr>
-
 		<tr th:each="box : ${boxes2}">
 			<td th:text="${box.boxId}">Id</td>
-			<td th:text="${box.bName}">Name</td>
-			<td th:text="${box.bDesc}">Description</td>
-			<td th:text="${box.bLocation}">Location</td>
-			<td th:text="${box.bPrivate}">Private</td>
-			<td><a th:href="@{/deletebox/{id}(id=${box.boxId})}">Delete</a>
-			<td><a th:href="@{/editbox/{id}(id=${box.boxId})}">Edit</a></td>
-			<td><a th:href="@{/items/{id}(id=${box.boxId})}">Items</a></td>
-			<td><a th:href="@{/additem/{id}(id=${box.boxId})}">Lisää tavara</a></td>
-			
+			<td th:text="${box.bName}">Nimi</td>
+			<td th:text="${box.bDesc}">Kuvaus</td>
+			<td th:text="${box.bLocation}">Paikka</td>
+			<td th:text="${box.bPrivate}">Julkinen/yksityinen</td>
+			<td><a th:href="@{/auth/deletebox/{id}(id=${box.boxId})}">Poista</a>
+			<td><a th:href="@{/auth/editbox/{id}(id=${box.boxId})}">Muokkaa</a></td>
+			<td><a th:href="@{/auth/itemit/{id}(id=${box.boxId})}">Esineet</a></td>
+			<td><a th:href="@{/auth/additem/{id}(id=${box.boxId})}">Lisää
+					esine</a></td>
 		</tr>
 	</table>
 </body>

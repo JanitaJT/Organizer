@@ -4,8 +4,8 @@
 <head>
 <title>Organizer</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<!-- <link rel="stylesheet" -->
+<!-- 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link href="../styles/home.css" th:ref="@{/styles/home.css}"
 	type="text/css" rel="stylesheet" />
@@ -14,45 +14,40 @@
 </head>
 <body>
 	<header>
-		
 		<img th:src="@{/styles/avatar.jpg}" alt="Avatar" class="avatar">
 	</header>
-
 	<div class="topnav">
+
 		<!--Tähän tulee listaus kaikista Boxeista jotka ovat julkisia-->
-		<!--Tai ehkä top navigointi missä on kirjaudu sisään, rekisteröidy ja etsi ominaisuus-->
-		<!-- Vois vielä lisätä koti-painikkeen -->
+		<!--Tai ehkä top navigointi missä on kirjaudu sisään, rekisteröidy-->
 
-			<a class="active" href="/logged">Koti</a>
-			<a class="active" href="/home">Kirjaudu ulos</a>
-		<div class="search-container">
-			<form action="/action_page.php">
-				<input type="text" placeholder="Etsi.." name="search">
-				<button class="button-search" type="submit">
-					<i class="fa fa-search"></i>
-				</button>
-			</form>
-		</div>
+		<a class="active" href="/auth/logged">Koti</a> <a class="active"
+			href="/home">Kirjaudu ulos</a>
+<!-- 		<div class="search-container"> -->
+<!-- 						<form action="/action_page.php"> -->
+<!-- 							<input type="text" placeholder="Etsi.." name="search"> -->
+<!-- 							<button class="button-search" type="submit"> -->
+<!-- 								<i class="fa fa-search"></i> -->
+<!-- 							</button> -->
+<!-- 						</form> -->
+<!-- 		</div> -->
 	</div>
-
-	<h1></h1>
 	<br>
-	
+		<header class="header">
+		<h1>Lista kategorioista</h1>
+	</header>
 	<table>
 		<tr>
 			<th>Id</th>
-			<th>Name</th>
-			<th>Description</th>
-	
-
+			<th>Nimi</th>
+			<th>Kuvaus</th>
+			<th>Muokkaa</th>
 		</tr>
 		<tr th:each="category : ${categories}">
 			<td th:text="${category.cateId}">Id</td>
-			<td th:text="${category.cName}">Name</td>
-			<td th:text="${category.cDesc}">Description</td>
-		<td><a th:href="@{/editcate/{id}(id=${category.cateId})}">Edit</a></td>
-		
-			
+			<td th:text="${category.cName}">Nimi</td>
+			<td th:text="${category.cDesc}">Kuvaus</td>
+			<td><a th:href="@{/auth/editcate/{id}(id=${category.cateId})}">Muokkaa</a></td>
 		</tr>
 	</table>
 </body>

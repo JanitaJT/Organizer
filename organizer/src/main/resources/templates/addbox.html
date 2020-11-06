@@ -1,56 +1,55 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
-xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
 <title>Add Box</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link href="../styles/signandlogin.css" th:ref="@{/styles/signandlogin.css}"
-	type="text/css" rel="stylesheet" />
+<link href="../styles/signandlogin.css"
+	th:ref="@{/styles/signandlogin.css}" type="text/css" rel="stylesheet" />
 </head>
+
+<!-- Uuden laatikon lisääminen -->
+
 <form action=# th:action="@{/savebox}" th:object=${box} method="post">
-<div class="imgcontainer">
-				<img th:src="@{/styles/avatar.jpg}" alt="Avatar" class="avatar">
-				<p>Lisää laatikko</p>
-			</div>
-			<div class="container">
+	<div class="imgcontainer">
+		<img th:src="@{/styles/avatar.jpg}" alt="Avatar" class="avatar">
+		<p>Lisää laatikko</p>
+	</div>
+	<div class="container">
 
-				<!--required poistettu toistaiseksi-->
-				<div>
-				<label>Nimi<input type="text" th:field="${box.bName}"
-					placeholder="Anna nimi" /> 
-				</label>
-				</div>
-				<div>
-				<label>Kuvaus<input type="text"
-					th:field="${box.bDesc}" placeholder="Anna kuvaus"  />
-				</label> 
-				</div>
-				<div>
-			
-				<label>Public <input type="radio"
-					th:field="${box.bPrivate}" name="public" value="false"  />
-					</label>
-					<br>
-					<label>Private
-					<input type="radio"
-					th:field="${box.bPrivate}" name="private" value="true"  />
+		<!--required poistettu toistaiseksi-->
+
+		<div>
+		<p th:if="${#fields.hasErrors('bName')}" th:errors="${box.bName}">Error</p>
+			<label>Nimi<input type="text" th:field="${box.bName}"
+				placeholder="Anna nimi 2-20 merkkiä" />
+		</label>
+		</div>
+		<div>
+		<p th:if="${#fields.hasErrors('bDesc')}" th:errors="${box.bDesc}">Error</p>
+			<label>Kuvaus<input type="text" th:field="${box.bDesc}"
+				placeholder="Anna kuvaus 2-40 merkkiä" />
 			</label>
-				
-				</div>
-					 <br> 
-				<div>
-				<label>Paikka
-					<input type="text" th:field="${box.bLocation}"
-					placeholder="Anna paikka"/>
-				</label>
-					</div>
-		
-				    <button type="submit">Tallenna</button>
-				 <a href="/logged" class="button">Peruuta</a>
-				<br>
-			</div>
-
+		</div>
+		<div>
+		<p th:if="${#fields.hasErrors('bPrivate')}" th:errors="${box.bPrivate}">Error</p>
+			<label>Julkinen<input type="radio" th:field="${box.bPrivate}"
+				name="public" value="false" />
+			</label> <br> <label>Yksityinen<input type="radio"
+				th:field="${box.bPrivate}" name="private" value="true" />
+			</label>
+		</div>
+		<br>
+		<div>
+		<p th:if="${#fields.hasErrors('bLocation')}" th:errors="${box.bLocation}">Error</p>
+			<label>Paikka <input type="text" th:field="${box.bLocation}"
+				placeholder="Anna paikka 2-40 merkkiä" />
+			</label>
+		</div>
+		<button type="submit">Tallenna</button>
+		<a href="/auth/logged" class="button">Peruuta</a> <br>
+	</div>
 </form>
 <body>
 </body>

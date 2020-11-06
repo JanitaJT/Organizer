@@ -7,7 +7,7 @@
 <!-- <link rel="stylesheet" -->
 <!-- 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link href="../styles/home.css" th:ref="@{/styles/home.css}"
+<link href="../../styles/home.css" th:ref="@{/styles/home.css}"
 	type="text/css" rel="stylesheet" />
 
 </head>
@@ -21,8 +21,8 @@
 		<!--Tähän tulee listaus kaikista esineistä jotka ovat julkisia-->
 		<!--Tai ehkä top navigointi missä on kirjaudu sisään, rekisteröidy-->
 
-
-		<a class="active" href="/home">Koti</a>
+		<a class="active" href="/auth/logged">Koti</a> <a class="active"
+			href="/home">Kirjaudu ulos</a>
 		<!-- 		<div class="search-container"> -->
 		<!-- 			<form action="/action_page.php"> -->
 		<!-- 				<input type="text" placeholder="Etsi.." name="search"> -->
@@ -41,15 +41,18 @@
 			<th>Id</th>
 			<th>Nimi</th>
 			<th>Omistaja</th>
-			<th>Kategoria</th>
+			<th>Julkinen/ Yksityinen</th>
+				<th>Kategoria</th>
 		</tr>
-	
-		<tr th:each="item : ${items}" th:if="${item.iPrivate} == false">
+		<tr th:each="item : ${itemit}">
 			<td th:text="${item.itemId}">Id</td>
 			<td th:text="${item.iName}">Nimi</td>
 			<td th:text="${item.iOwner}">Omistaja</td>
+			<td th:text="${item.iPrivate}"></td>
 			<td th:text="${item.category.cName}">Kategoria</td>
-			
+			<td><a th:href="@{/auth/deleteitem/{id}(id=${item.itemId})}">Poista</a>
+			<td><a th:href="@{/auth/edititem/{id}(id=${item.itemId})}">Muokkaa
+					esinettä</a></td>
 		</tr>
 	</table>
 </body>

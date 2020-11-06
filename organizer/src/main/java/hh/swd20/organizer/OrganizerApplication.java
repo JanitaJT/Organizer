@@ -42,11 +42,12 @@ public class OrganizerApplication {
 			categoryRepository.save(cate1);
 			categoryRepository.save(cate2);
 			
-			Item item1 = new Item("Nahkatakki", "Janita", true, box1, cate2);
+
+			Item item1 = new Item("Nahkatakki", "Janita", false, box2, cate2);
 			itemRepository.save(item1);
 			
-			User user1 = new User("Janita", "Toivola", "Nainen", "HattiVatti", "$2b$10$I19tmTMN1rFq4.guoJc1heLtSyyFXdgvoklEUVhg9JQkcPSrztUxG", "hatti.vatti@gmail.com", "USER");
-			User user2 = new User("Aatu", "Aatunen", "Mies", "Admin", "$2b$10$uDp.WeBdo8xKL2dAl740FOEyk17zW7Xd69sdux38o1ZYmB05CM5la", "admin.admin@gmail,com", "ADMIN");
+			User user1 = new User("Janita", "Toivola", "Nainen", "HattiVatti", "$2b$10$I19tmTMN1rFq4.guoJc1heLtSyyFXdgvoklEUVhg9JQkcPSrztUxG", "hatti.vatti@gmail.com", "USER"); //hatti
+			User user2 = new User("Aatu", "Aatunen", "Mies", "Admin", "$2b$10$laoLfIwAJ4Zf.uuwK0DrgO1GR0tv3nXG4/N/vb6Z/RFClbjZ0Qiqe", "admin.admin@gmail,com", "ADMIN"); //matti
 			userRepository.save(user1);
 			userRepository.save(user2);
 			

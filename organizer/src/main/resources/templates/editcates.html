@@ -5,12 +5,15 @@
 <title>Edit Box</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link href="../styles/signandlogin.css"
+<link href="../../styles/signandlogin.css"
 	th:ref="@{/styles/signandlogin.css}" type="text/css" rel="stylesheet" />
 </head>
 <body>
-	
-	<form action="#" th:action="@{/savecate}" th:object=${category} method="post">
+
+	<!-- Kategorioiden muokkaus -->
+
+	<form action="#" th:action="@{/savecate}" th:object=${category}
+		method="post">
 		<div class="imgcontainer">
 			<img th:src="@{/styles/avatar.jpg}" alt="Avatar" class="avatar">
 			<p>Muokkaa kategoriaa</p>
@@ -28,11 +31,9 @@
 					placeholder="Anna kuvaus" />
 				</label>
 			</div>
-	
-				    <button type="submit">Tallenna</button>
-				 <a href="/cates" class="button">Peruuta</a>
+			<button type="submit">Tallenna</button>
+			<a href="/auth/cates" class="button">Peruuta</a>
 		</div>
-
 	</form>
 </body>
 </html>

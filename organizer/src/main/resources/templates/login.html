@@ -4,42 +4,33 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link href="../styles/signandlogin.css" th:ref="@{/styles/signandlogin.css}"
-	type="text/css" rel="stylesheet" />
-    </head>
+<link href="../styles/signandlogin.css"
+	th:ref="@{/styles/signandlogin.css}" type="text/css" rel="stylesheet" />
+</head>
 <body>
-    <header class="header">
-        <h1>Kirjaudu sisään!</h1>
-    </header>
-<br>
-<div >
-   <div th:if="${param.error}">Invalid username and password.</div>
-	<form th:action="@{/login}" method="post">
-		
-    <div class="imgcontainer">
- 	<img th:src="@{/styles/avatar.jpg}" alt="Avatar" class="avatar">
-    </div>
-    <div class="container">
-      <label >Käyttäjä nimi <input type="text" name="username" placeholder="Anna käyttäjänimesi"/></label>
-        <!--required poistettu toistaiseksi-->
+	<header class="header">
+		<h1>Kirjaudu sisään!</h1>
+	</header>
+	<br>
+	<div>
+		<div th:if="${param.error}">Virheellinen käyttäjänimi ja
+			salasana.</div>
+		<form th:action="@{/login}" method="post">
 
-  
-        <br>
-      <label >Käyttäjä nimi <input name="password" type="password" placeholder="Anna salasanasi"/></label>
-    
-       <!-- <button type="submit">Kirjaudu</button>-->
-          <button type="submit">Kirjaudu sisään</button>
-           	 <a href="/home" class="button">Peruuta</a>
-        <br>
-      <label>
-        <input type="checkbox" checked="checked" name="remember"> Muista minut
-      </label>
-  
-      </div>
- </form>
-  
-    </div>
- 
-
-    </body>
+			<div class="imgcontainer">
+				<img th:src="@{/styles/avatar.jpg}" alt="Avatar" class="avatar">
+			</div>
+			<div class="container">
+				<label>Käyttäjä nimi <input type="text" name="username"
+					placeholder="Anna käyttäjänimesi" /></label>
+				<!--required poistettu toistaiseksi-->
+				<br> <label>Käyttäjä nimi <input name="password"
+					type="password" placeholder="Anna salasanasi" /></label>
+				<button type="submit">Kirjaudu sisään</button>
+				<a href="/home" class="button">Peruuta</a> <a href="/signup"
+					class="button">Rekisteröidy</a> <br>
+			</div>
+		</form>
+	</div>
+</body>
 </html>

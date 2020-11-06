@@ -2,9 +2,13 @@ package hh.swd20.organizer.web;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -22,29 +26,41 @@ public class CategoryController {
 	@Autowired
 	CategoryRepository categoryRepository;
 	
-	@RequestMapping(value = "/cates", method = RequestMethod.GET)
+	@RequestMapping(value = "auth/cates", method = RequestMethod.GET)
+	@PreAuthorize("hasAnyAuthority('ADMIN', 'USER')")
 	public String catePage(Model model) {
 		List<Category> categories = (List<Category>) categoryRepository.findAll();
 		model.addAttribute("categories", categories);
 		return "cates";
 	}
 	
-	 //tyhjän kategorialistan muodostaminen
-	@RequestMapping(value = "/addcategory", method = RequestMethod.GET)
+	 // Tyhjän kategorialistan muodostaminen
+	
+	@RequestMapping(value = "auth/addcategory", method = RequestMethod.GET)
+	@PreAuthorize("hasAnyAuthority('ADMIN', 'USER')")
 	public String getNewCate(Model model) {
 		model.addAttribute("category", new Category());
 		return "addcate";
 	}
 	
-	//lomakkeen tietojen vastaanotto ja tallennus
+	// Lomakkeen tietojen vastaanotto ja tallennus
+	
 	@RequestMapping(value = "/savecate", method = RequestMethod.POST)
-	public String saveCate(@ModelAttribute Category category) {
+	public String saveCate(@Valid @ModelAttribute Category category, BindingResult bindingResult, Model model) {
+		if(bindingResult.hasErrors()) {
+			return "addcate";
+		}
+		else {
 		categoryRepository.save(category);
-		return "redirect:/cates";
-		
+		model.addAttribute("category", category);
+		return "redirect:/auth/cates";
+		}
 	}
 	
-	@RequestMapping(value= "/editcate/{id}", method = RequestMethod.GET)
+	// Kategorian muokkaus
+	
+	@RequestMapping(value= "/auth/editcate/{id}", method = RequestMethod.GET)
+	@PreAuthorize("hasAnyAuthority('ADMIN', 'USER')")
 	public String editCate(@PathVariable("id") Long cateId, Model model) {
 		Category category = categoryRepository.findById(cateId).get();
 		model.addAttribute("category", category);

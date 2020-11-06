@@ -9,6 +9,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.User;
@@ -31,15 +32,18 @@ public class WebSecurityConfigBox extends WebSecurityConfigurerAdapter{
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.authorizeRequests().antMatchers("/styles/**").permitAll()
-		.and().authorizeRequests().antMatchers("/signup","/home", "/items","/saveuser","/items/{id}","/savecate" ,"/h2-console/**").permitAll()
+		.and().authorizeRequests().antMatchers("/home","/h2-console/**").permitAll()
 		.and().csrf().ignoringAntMatchers("/h2-console/**")
-//		.and().authorizeRequests().antMatchers("/addbox").hasRole("USER")
 		.and()
 		.headers().frameOptions().sameOrigin()
-		.and().authorizeRequests().anyRequest().authenticated()
-		.and().formLogin().loginPage("/login").defaultSuccessUrl("/logged", true).permitAll()
+		.and().authorizeRequests().antMatchers("/auth/*").hasAnyAuthority("ADMIN", "USER")
+	
+		
+		.and().formLogin().loginPage("/login").defaultSuccessUrl("/auth/logged", true).permitAll()
 		.and().logout()
 		.permitAll();
+		
+		
 	}
 	
 	@Autowired
@@ -63,5 +67,8 @@ public class WebSecurityConfigBox extends WebSecurityConfigurerAdapter{
 		return new InMemoryUserDetailsManager(users);
 		
 	}
+	
 
 }
+
+
