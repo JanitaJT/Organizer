@@ -4,32 +4,32 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
 public class SignUpForm {
-	@NotEmpty
-	@Size(min=2, max=30)
+	@NotEmpty(message="Etunimi ei saa olla tyhjä!")
+	@Size(min=2, max=30, message="Etunimen pitää olla 2-30 merkkiä pitkä!")
 	private String firstname = "";
 	
-	@NotEmpty
-	@Size(min=2, max=40)
+	@NotEmpty(message="Sukunimi ei saa olla tyhjä!")
+	@Size(min=2, max=40, message="Sukunimen pitää olla 2-40 merkkiä pitkä!")
 	private String lastname = "";
 	
-	@NotEmpty
-	@Size(min=4, max=6)
+	@NotEmpty(message="Sukupuoli ei voi olla tyhjä!")
+	@Size(min=4, max=6, message="Sukupuoli pitää olla mies tai nainen")
 	private String gender ="";
 	
-	@NotEmpty
-	@Size(min=4, max=30)
+	@NotEmpty(message="Käyttäjänimi ei saa olla tyhjä!")
+	@Size(min=4, max=30, message="Käyttäjänimi pitää olla 4-30 merkkiä pitkä!")
 	private String username = "";
 	
-	@NotEmpty
-	@Size(min=4, max = 20)
+	@NotEmpty(message="Salasana ei saa olla tyhjä!")
+	@Size(min=4, max = 20, message="Salasanan pitää olla 4-20 merkkiä pitkä!")
 	private String password = "";
 	
-	@NotEmpty
-	@Size(min=4, max=20)
+	@NotEmpty(message="Salasana ei saa olla tyhjä")
+	@Size(min=4, max=20, message="Salasanan pitää olla 4-20 merkkiä pitkä!")
 	private String passwordCheck = "";
 	
-	@NotEmpty
-	@Size(min=15, max=60)
+	@NotEmpty(message="Sähköposti ei saa olla tyhjä!")
+	@Size(min=15, max=60, message="Sähköpostin pitää olla 15-60 merkkiä pitkä!")
 	private String email = "";
 	
 	@NotEmpty

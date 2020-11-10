@@ -22,16 +22,22 @@
 
 				<!--required poistettu toistaiseksi-->
 				<div>
+				<p th:if="${#fields.hasErrors('firstname')}" th:errors="*{firstname}">
+					Error</p>
 				<label>Etunimi <input type="text" th:field="*{firstname}"
 					placeholder="Anna etunimi" /> 
 				</label>
 				</div>
 				<div>
+				<p th:if="${#fields.hasErrors('lastname')}" th:errors="*{lastname}">
+					Error</p>
 				<label> Sukunimi <input type="text"
 					th:field="*{lastname}" placeholder="Anna sukunimi"  />
 				</label> 
 				</div>
 				<div>
+				<p th:if="${#fields.hasErrors('gender')}" th:errors="*{gender}">
+					Error</p>
 				<label>Sukupuoli <input type="text"
 					th:field="*{gender}" placeholder="Anna sukupuoli"
 					/>
@@ -39,15 +45,18 @@
 				</div>
 					 <br> 
 				<div>
+					<p th:if="${#fields.hasErrors('username')}" th:errors="*{username}">Username
+					Error</p>
 				<label>Käyttäjänimi
 					<input type="text" th:field="*{username}"
 					placeholder="Anna käyttäjänimesi"/>
 				</label>
-				<p th:if="${#fields.hasErrors('username')}" th:errors="*{username}">Username
-					Error</p>
+			
 					</div>
 				<br>
 				<div>
+				<p th:if="${#fields.hasErrors('email')}" th:errors="*{email}">
+					Error</p>
 				<label>Sähköposti<input
 					th:field="*{email}" type="text"
 					placeholder="Anna sähköposti"/>
@@ -55,12 +64,16 @@
 					</div> 
 				<br>
 				<div>
+						<p th:if="${#fields.hasErrors('password')}"
+						th:errors="*{password}">error</p>
 				<label>Salsana<input
 					th:field="*{password}" type="password"
 					placeholder="Anna salasanasi"/>
 					</label>
 					</div>
 					<div>
+						<p th:if="${#fields.hasErrors('passwordCheck')}"
+						th:errors="*{passwordCheck}">Password match error</p>
 				 <label>Varmista salasana <input th:field="*{passwordCheck}" type="password"
 					placeholder="Anna salasanasi"/>
 				</label> 

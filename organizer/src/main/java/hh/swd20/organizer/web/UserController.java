@@ -19,8 +19,6 @@ import hh.swd20.organizer.domain.UserRepository;
 public class UserController {
 	@Autowired
 	private UserRepository userRepository;
-	
-	
 
 	@RequestMapping(value = "/signup")
 	public String addUser(Model model) {
@@ -28,43 +26,41 @@ public class UserController {
 		return "signup";
 
 	}
-	
+
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public String homePage() {
 		return "login";
 	}
-	
-
 
 	@RequestMapping(value = "/saveuser", method = RequestMethod.POST)
-	public String saveUser(@Valid @ModelAttribute("signUpForm") SignUpForm signUpForm, BindingResult bindingResult) {
-		System.out.println(signUpForm);
+	public String saveUser(@Valid @ModelAttribute("signupform") SignUpForm signupform, BindingResult bindingResult) {
+//		System.out.println(signUpForm);
 		if (!bindingResult.hasErrors()) {
-			if (signUpForm.getPassword().equals(signUpForm.getPasswordCheck())) {
-				String pwd = signUpForm.getPassword();
+			if (signupform.getPassword().equals(signupform.getPasswordCheck())) {
+				String pwd = signupform.getPassword();
 				BCryptPasswordEncoder bc = new BCryptPasswordEncoder();
 				String hasPwd = bc.encode(pwd);
 
 				User newUser = new User();
-				newUser.setuFirstname(signUpForm.getFirstname());
-				newUser.setuLastname(signUpForm.getLastname());
-				newUser.setGender(signUpForm.getGender());
+				newUser.setuFirstname(signupform.getFirstname());
+				newUser.setuLastname(signupform.getLastname());
+				newUser.setGender(signupform.getGender());
 				newUser.setUserPassword(hasPwd);
-				newUser.setUserName(signUpForm.getUsername());
-				newUser.setuEmail(signUpForm.getEmail());
+				newUser.setUserName(signupform.getUsername());
+				newUser.setuEmail(signupform.getEmail());
 				newUser.setRole("USER");
-				
+
 				System.out.println("UUSI KÄYTTÄJÄ: " + newUser);
-				
-				if (userRepository.findByuserName(signUpForm.getUsername()) == null) {
+
+				if (userRepository.findByuserName(signupform.getUsername()) == null) {
 					userRepository.save(newUser);
 				} else {
-					bindingResult.rejectValue("username", "err.username", "Username already exists");
+					bindingResult.rejectValue("username", "err.username", "Käyttäjä nimi on jo olemassa");
 					return "signup";
 				}
 
 			} else {
-				bindingResult.rejectValue("passwordCheck", "err.passwordCheck", "Password didn't match");
+				bindingResult.rejectValue("passwordCheck", "err.passwordCheck", "Salsana ei täsmännyt");
 				return "signup";
 			}
 
