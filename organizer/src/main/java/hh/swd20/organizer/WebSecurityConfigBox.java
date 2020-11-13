@@ -31,19 +31,17 @@ public class WebSecurityConfigBox extends WebSecurityConfigurerAdapter{
 	
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		http.authorizeRequests().antMatchers("/styles/**").permitAll()
+		http.authorizeRequests().antMatchers("/styles/**").permitAll() 
+		// Jotta css toimii, static/styles
 		.and().authorizeRequests().antMatchers("/home","/h2-console/**").permitAll()
 		.and().csrf().ignoringAntMatchers("/h2-console/**")
 		.and()
 		.headers().frameOptions().sameOrigin()
-		.and().authorizeRequests().antMatchers("/auth/*").hasAnyAuthority("ADMIN", "USER")
-	
-		
+		.and().authorizeRequests().antMatchers("/auth/*").hasAnyAuthority("ADMIN", "USER") 
+		// Määritetty kellä on oikeus /auth/* endpointtiin
 		.and().formLogin().loginPage("/login").defaultSuccessUrl("/auth/logged", true).permitAll()
 		.and().logout()
 		.permitAll();
-		
-		
 	}
 	
 	@Autowired

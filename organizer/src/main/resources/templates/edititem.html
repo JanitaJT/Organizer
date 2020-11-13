@@ -2,7 +2,6 @@
 <html xmlns:th="http://www.thymeleaf.org"
 	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
-<title>Edit Box</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link href="../../styles/signandlogin.css"
@@ -31,7 +30,7 @@
 				</label>
 			</div>
 			<div>
-
+				<!-- Käytetty radio-valintaa, value(true/false) märittää onko yksityinen vai julkinen -->
 				<label>Julkinen <input type="radio"
 					th:field="${item.iPrivate}" name="public" value="false" />
 				</label> <br> <label>Yksityinen <input type="radio"

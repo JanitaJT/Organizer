@@ -26,6 +26,10 @@ public class CategoryController {
 	@Autowired
 	CategoryRepository categoryRepository;
 	
+	// HasAnyAuthority jotta vain autentikoituneet käyttäjät voivat lisätä/muokata ja poistaa kategorioita
+	// Vain autentikoituneet käyttäjät pystyvät näkemään kategoria listauksen
+	// Käytetty /auth/* endpointtia, näihin pääsee vain autentikoitunut käyttäjä
+	
 	@RequestMapping(value = "auth/cates", method = RequestMethod.GET)
 	@PreAuthorize("hasAnyAuthority('ADMIN', 'USER')")
 	public String catePage(Model model) {

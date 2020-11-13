@@ -45,6 +45,8 @@ public class User {
 	@Column(name = "role", nullable = false)
 	private String role;
 
+	
+	// Many to many, jotta käyttäjä pääsee käsiksi kaikkiin laatikoihin
 	@ManyToMany(cascade = { CascadeType.ALL })
 	@JoinTable(name = "User_Box", joinColumns = { @JoinColumn(name = "usId") }, inverseJoinColumns = {
 			@JoinColumn(name = "boxId") })

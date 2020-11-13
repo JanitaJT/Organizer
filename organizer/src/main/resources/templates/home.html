@@ -4,8 +4,6 @@
 <head>
 <title>Organizer</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<!-- <link rel="stylesheet" -->
-<!-- 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link href="../styles/home.css" th:ref="@{/styles/home.css}"
 	type="text/css" rel="stylesheet" />
@@ -18,18 +16,8 @@
 	</header>
 
 	<div class="topnav">
-		<!--Tähän tulee listaus kaikista Boxeista jotka ovat julkisia-->
-		<!--Tai ehkä top navigointi missä on kirjaudu sisään, rekisteröidy-->
 		<a class="active" href="/login">Kirjaudu sisään</a> <a class="active"
 			href="/signup">Rekisteröidy</a>
-		<!-- 		<div class="search-container"> -->
-		<!-- 			<form action="/action_page.php"> -->
-		<!-- 				<input type="text" placeholder="Etsi.." name="search"> -->
-		<!-- 				<button class="button-search" type="submit"> -->
-		<!-- 					<i class="fa fa-search"></i> -->
-		<!-- 				</button> -->
-		<!-- 			</form> -->
-		<!-- 		</div> -->
 	</div>
 	<header class="header">
 		<h1>Julkiset laatikot</h1>
@@ -43,7 +31,7 @@
 			<th>Paikka</th>
 			<th>Esineet</th>
 		</tr>
-		<tr th:each="box : ${boxes}" th:if="${box.bPrivate} == false">
+		<tr th:each="box : ${boxes}" th:if="${box.bPrivate} == false"> <!-- Jos laatikko on määritetty yksityiseksi, se ei näy listauksessa -->
 			<td th:text="${box.boxId}">Id</td>
 			<td th:text="${box.bName}">Nimi</td>
 			<td th:text="${box.bDesc}">Kuvaus</td>

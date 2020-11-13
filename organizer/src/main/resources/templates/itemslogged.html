@@ -4,8 +4,6 @@
 <head>
 <title>Organizer</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<!-- <link rel="stylesheet" -->
-<!-- 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link href="../../styles/home.css" th:ref="@{/styles/home.css}"
 	type="text/css" rel="stylesheet" />
@@ -18,19 +16,8 @@
 	</header>
 
 	<div class="topnav">
-		<!--Tähän tulee listaus kaikista esineistä jotka ovat julkisia-->
-		<!--Tai ehkä top navigointi missä on kirjaudu sisään, rekisteröidy-->
-
 		<a class="active" href="/auth/logged">Koti</a> <a class="active"
 			href="/home">Kirjaudu ulos</a>
-		<!-- 		<div class="search-container"> -->
-		<!-- 			<form action="/action_page.php"> -->
-		<!-- 				<input type="text" placeholder="Etsi.." name="search"> -->
-		<!-- 				<button class="button-search" type="submit"> -->
-		<!-- 					<i class="fa fa-search"></i> -->
-		<!-- 				</button> -->
-		<!-- 			</form> -->
-		<!-- 		</div> -->
 	</div>
 	<header class="header">
 		<h1>Lista esineistä</h1>
@@ -42,7 +29,7 @@
 			<th>Nimi</th>
 			<th>Omistaja</th>
 			<th>Julkinen/ Yksityinen</th>
-				<th>Kategoria</th>
+			<th>Kategoria</th>
 		</tr>
 		<tr th:each="item : ${itemit}">
 			<td th:text="${item.itemId}">Id</td>

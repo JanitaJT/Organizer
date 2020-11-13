@@ -1,6 +1,6 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org"
-xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
 <title>Add Category</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -9,7 +9,6 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 	th:ref="@{/styles/signandlogin.css}" type="text/css" rel="stylesheet" />
 </head>
 <body>
-	<!-- 	Uuden kategorian lisäys -->
 
 	<form action="#" th:action="@{/savecate}" th:object=${category}
 		method="post">
@@ -18,20 +17,19 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 			<p>Lisää kategoria</p>
 		</div>
 		<div class="container">
-		
 			<div>
-				<p th:if="${#fields.hasErrors('cName')}" th:errors="${category.cName}">Error</p>
+				<p th:if="${#fields.hasErrors('cName')}"
+					th:errors="${category.cName}">Error</p>
 				<label>Nimi<input type="text" th:field="${category.cName}"
 					placeholder="Anna nimi" />
 				</label>
-			
 			</div>
 			<div>
-			<p th:if="${#fields.hasErrors('cDesc')}" th:errors="${category.cDesc}">Error</p>
+				<p th:if="${#fields.hasErrors('cDesc')}"
+					th:errors="${category.cDesc}">Error</p>
 				<label>Kuvaus<input type="text" th:field="${category.cDesc}"
 					placeholder="Anna kuvaus" />
 				</label>
-					
 			</div>
 			<button type="submit">Tallenna</button>
 			<a href="/auth/logged" class="button">Peruuta</a> <br>

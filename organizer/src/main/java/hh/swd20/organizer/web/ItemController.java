@@ -35,17 +35,9 @@ public class ItemController {
 	@Autowired
 	CategoryRepository categoryRepository;
 
-//	@RequestMapping(value = "/items", method = RequestMethod.GET)
-//	public String itemPage(Model model) {
-//		List<Item> items = (List<Item>) itemRepository.findAll();
-//		model.addAttribute("items", items);
-//		return "items";
-//	}
-	
-	// Haetaan boxid:llä siihen kuuluvat itemit home-sivulle
-	
-	@RequestMapping(value = "/items/{id}", method = RequestMethod.GET)
+	// Haetaan boxid:llä siihen kuuluvat esineet home-sivulle
 
+	@RequestMapping(value = "/items/{id}", method = RequestMethod.GET)
 	public String findItemsHome(@PathVariable("id") Long boxId, Model model) {
 		Box box = boxRepository.findById(boxId).get();
 		List<Item> items = box.getItems();
@@ -54,38 +46,42 @@ public class ItemController {
 		return "items";
 	}
 
+	// HasAnyAuthority jotta vain autentikoituneet käyttäjät voivat lisätä/muokata
+	// ja poistaa esineitä
+	// Käytetty /auth/* endpointtia, näihin pääsee vain autentikoitunut käyttäjä
+
 	// Tyhjä itemilomake
-	
+
 	@RequestMapping(value = "/auth/additem/{id}", method = RequestMethod.GET)
 	@PreAuthorize("hasAnyAuthority('ADMIN', 'USER')")
-	public String addItem(@PathVariable("id") Long boxId, Model model) {
-		Box box = boxRepository.findById(boxId).get();
+	public String addItem(@PathVariable("id") Long boxId, Model model) { // Koska esineet ovat laatikon sisällä,
+		Box box = boxRepository.findById(boxId).get();					//  pitää etsiä boxId:llä	
 		Item item = new Item();
 		item.setBox(box);
 		model.addAttribute("item", item);
-		model.addAttribute("categories", categoryRepository.findAll());
+		model.addAttribute("categories", categoryRepository.findAll());	// Kategoriat ovat yhteydessä esineeseen
 		return "additem";
 
 	}
-	
+
 	// Tallennetaan uusi itemi
 
 	@RequestMapping(value = "/saveitem", method = RequestMethod.POST)
 	public String saveItem(@Valid @ModelAttribute Item item, BindingResult bindingResult, Model model) {
-		if (bindingResult.hasErrors()) {
+		if (bindingResult.hasErrors()) {	// Jos tulee virheitä
 			model.addAttribute("item", item);
 			model.addAttribute("categories", categoryRepository.findAll());
 			return "additem";
-		}else {
-		itemRepository.save(item);
-		model.addAttribute("item", item);
-		model.addAttribute("categories", categoryRepository.findAll());
-		return "redirect:/auth/itemit";
+		} else {		// Jos kaikki menee oikein
+			itemRepository.save(item);
+			model.addAttribute("item", item);
+			model.addAttribute("categories", categoryRepository.findAll());
+			return "redirect:/auth/itemit";
 		}
 	}
-	
-	//Listaa itemit itemslogged-sivulle
-	
+
+	// Listaa esineet itemslogged-sivulle
+
 	@RequestMapping(value = "/auth/itemit", method = RequestMethod.GET)
 	@PreAuthorize("hasAnyAuthority('ADMIN', 'USER')")
 	public String itemPageLogged(Model model) {
@@ -93,9 +89,9 @@ public class ItemController {
 		model.addAttribute("itemit", itemit);
 		return "itemslogged";
 	}
-	
-	// Haetaan boxid:llä siihen kuuluvat itemit logged sivulle
-	
+
+	// Haetaan boxid:llä siihen kuuluvat esineet logged-sivulle
+
 	@RequestMapping(value = "/auth/itemit/{id}", method = RequestMethod.GET)
 	@PreAuthorize("hasAnyAuthority('ADMIN', 'USER')")
 	public String findItemsLogged(@PathVariable("id") Long boxId, Model model) {
@@ -107,7 +103,7 @@ public class ItemController {
 	}
 
 	// Itemin editointi
-	
+
 	@RequestMapping(value = "/auth/edititem/{id}", method = RequestMethod.GET)
 	@PreAuthorize("hasAnyAuthority('ADMIN', 'USER')")
 	public String editItem(@PathVariable("id") Long itemId, Model model) {
@@ -116,10 +112,10 @@ public class ItemController {
 		model.addAttribute("categories", categoryRepository.findAll());
 		return "edititem";
 	}
-	
+
 	// Itemin poisto
-	
-	@RequestMapping(value="/auth/deleteitem/{id}", method = RequestMethod.GET)
+
+	@RequestMapping(value = "/auth/deleteitem/{id}", method = RequestMethod.GET)
 	@PreAuthorize("hasAnyAuthority('ADMIN', 'USER')")
 	public String deleteItem(@PathVariable("id") Long itemId, Model model) {
 		itemRepository.deleteById(itemId);

@@ -23,6 +23,8 @@ import hh.swd20.organizer.domain.User;
 @Entity
 @Table(name = "Box")
 public class Box {
+	
+	// Tein suomenkieliset virheilmoitukset, toimii lisäyksessä ja muokkauksessa
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -43,7 +45,9 @@ public class Box {
 
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "box")
 	private List<Item> items;
-
+	
+	
+// Many to many yhteys, jotta laatikoilla voi olla monta samaa käyttäjää
 	@ManyToMany(mappedBy = "boxes")
 	private Set<User> users = new HashSet<>();
 

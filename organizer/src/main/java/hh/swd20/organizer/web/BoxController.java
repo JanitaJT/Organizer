@@ -34,6 +34,7 @@ public class BoxController {
 	CategoryRepository cateRepository;
 
 	// Haetaan kaikki laatikot home-sivulle
+	// On eri koska kaikki laatikot eivät näy, ellei ole kirjautunut
 
 	@RequestMapping(value = "/home", method = RequestMethod.GET)
 	public String homePage(Model model) {
@@ -43,6 +44,9 @@ public class BoxController {
 
 	}
 
+	// HasAnyAuthority jotta vain autentikoituneet käyttäjät voivat lisätä/muokata ja poistaa laatikoita
+	// Käytetty /auth/* endpointtia, näihin pääsee vain autentikoitunut käyttäjä
+	
 	// Haetaan kaikki laatikot logged-sivulle
 
 	@RequestMapping(value = "/auth/logged", method = RequestMethod.GET)
@@ -54,7 +58,7 @@ public class BoxController {
 
 	}
 
-	// Muodostetaan tyhjä boxlomake
+	// Muodostetaan tyhjä laatikkolomake
 
 	@RequestMapping(value = "/auth/addbox", method = RequestMethod.GET)
 	@PreAuthorize("hasAnyAuthority('ADMIN', 'USER')")
@@ -77,7 +81,7 @@ public class BoxController {
 		}
 	}
 
-// Boxin poisto
+// Laatikon poisto
 
 	@RequestMapping(value = "/auth/deletebox/{id}", method = RequestMethod.GET)
 	@PreAuthorize("hasAnyAuthority('ADMIN', 'USER')")
@@ -86,7 +90,7 @@ public class BoxController {
 		return "redirect:../logged";
 	}
 
-	// Boxin muokkaus
+	// Laatikon muokkaus
 	
 	@RequestMapping(value = "/auth/editbox/{id}", method = RequestMethod.GET)
 	@PreAuthorize("hasAnyAuthority('ADMIN', 'USER')")

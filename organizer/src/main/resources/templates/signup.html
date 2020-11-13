@@ -19,8 +19,6 @@
 				<img th:src="@{/styles/avatar.jpg}" alt="Avatar" class="avatar">
 			</div>
 			<div class="container">
-
-				<!--required poistettu toistaiseksi-->
 				<div>
 				<p th:if="${#fields.hasErrors('firstname')}" th:errors="*{firstname}">
 					Error</p>

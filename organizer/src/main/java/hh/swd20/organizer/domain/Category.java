@@ -13,6 +13,8 @@ import javax.validation.constraints.Size;
 
 @Entity
 public class Category {
+	
+	// Tein suomenkieliset virheilmoitukset, toimii lisäyksessä ja muokkauksessa
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)

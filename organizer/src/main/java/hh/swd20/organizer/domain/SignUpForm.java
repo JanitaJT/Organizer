@@ -4,6 +4,9 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
 public class SignUpForm {
+	
+	// Tein suomenkieliset virheilmoitukset
+	
 	@NotEmpty(message="Etunimi ei saa olla tyhjä!")
 	@Size(min=2, max=30, message="Etunimen pitää olla 2-30 merkkiä pitkä!")
 	private String firstname = "";

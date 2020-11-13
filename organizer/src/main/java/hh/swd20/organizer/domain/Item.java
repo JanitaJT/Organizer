@@ -14,6 +14,8 @@ import javax.validation.constraints.Size;
 
 @Entity
 public class Item {
+	
+	// Tein suomenkieliset virheilmoitukset, toimii lisäyksessä ja muokkauksessa
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
