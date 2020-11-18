@@ -71,4 +71,16 @@ public class CategoryController {
 		return "editcates";
 	}
 	
+	@RequestMapping(value = "/saveeditcate", method = RequestMethod.POST)
+	public String saveEditedCate(@Valid @ModelAttribute Category category, BindingResult bindingResult, Model model) {
+		if(bindingResult.hasErrors()) {
+			return "editcates";
+		}
+		else {
+		categoryRepository.save(category);
+		model.addAttribute("category", category);
+		return "redirect:/auth/cates";
+		}
+	}
+	
 }

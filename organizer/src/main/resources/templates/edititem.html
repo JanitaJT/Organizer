@@ -9,7 +9,7 @@
 </head>
 <body>
 
-	<form action="#" th:action="@{/saveitem}" th:object=${item}
+	<form action="#" th:action="@{/saveedititem}" th:object=${item}
 		method="post">
 		<div class="imgcontainer">
 			<img th:src="@{/styles/avatar.jpg}" alt="Avatar" class="avatar">
@@ -20,16 +20,19 @@
 			<!--  jotta tiedetään mihin laattikkoon esine kuuluu -->
 			<input type="hidden" th:field="${item.itemId}" />
 			<div>
+				<p th:if="${#fields.hasErrors('iName')}" th:errors="*{iName}">Error</p>
 				<label>Nimi<input type="text" th:field="${item.iName}"
 					placeholder="Anna nimi" />
 				</label>
 			</div>
 			<div>
+				<p th:if="${#fields.hasErrors('iOwner')}" th:errors="*{iOwner}">Error</p>
 				<label>Omistaja<input type="text" th:field="${item.iOwner}"
 					placeholder="Anna omistaja" />
 				</label>
 			</div>
 			<div>
+					<p th:if="${#fields.hasErrors('iPrivate')}" th:errors="*{iPrivate}">Error</p>
 				<!-- Käytetty radio-valintaa, value(true/false) märittää onko yksityinen vai julkinen -->
 				<label>Julkinen <input type="radio"
 					th:field="${item.iPrivate}" name="public" value="false" />

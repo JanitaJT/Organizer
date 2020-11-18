@@ -9,7 +9,7 @@
 	th:ref="@{/styles/signandlogin.css}" type="text/css" rel="stylesheet" />
 </head>
 <body>
-	<form action="#" th:action="@{/savebox}" th:object=${box} method="post">
+	<form action="#" th:action="@{/saveeditbox}" th:object=${box} method="post">
 		<div class="imgcontainer">
 			<img th:src="@{/styles/avatar.jpg}" alt="Avatar" class="avatar">
 			<p>Muokkaa laatikkoa</p>
@@ -17,18 +17,21 @@
 		<div class="container">
 			<input type="hidden" th:field="${box.boxId}" />
 			<div>
+				<p th:if="${#fields.hasErrors('bName')}" th:errors="${box.bName}">Error</p>
 				<label>Nimi<input type="text" th:field="${box.bName}"
 					placeholder="Anna nimi" />
 				</label>
 				<p th:if="${#fields.hasErrors('bName')}" th:errors="${box.bName}">Error</p>
 			</div>
 			<div>
+				<p th:if="${#fields.hasErrors('bDesc')}" th:errors="${box.bDesc}">Error</p>
 				<label>Kuvaus<input type="text" th:field="${box.bDesc}"
 					placeholder="Anna kuvaus" />
 				</label>
 				<p th:if="${#fields.hasErrors('bDesc')}" th:errors="${box.bDesc}">Error</p>
 			</div>
 			<div>
+				<p th:if="${#fields.hasErrors('bPrivate')}" th:errors="${box.bPrivate}">Error</p>
 			<!-- Käytetty radio-valintaa, value(true/false) märittää onko yksityinen vai julkinen -->
 				<label>Julkinen <input type="radio"
 					th:field="${box.bPrivate}"	
@@ -41,6 +44,7 @@
 			</div>
 			<br>
 			<div>
+					<p th:if="${#fields.hasErrors('bLocation')}" th:errors="${box.bLocation}">Error</p>
 				<label>Paikka <input type="text" th:field="${box.bLocation}"
 					placeholder="Anna paikka" />
 				</label>

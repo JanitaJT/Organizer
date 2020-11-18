@@ -40,7 +40,7 @@ public class WebSecurityConfigBox extends WebSecurityConfigurerAdapter{
 		.and().authorizeRequests().antMatchers("/auth/*").hasAnyAuthority("ADMIN", "USER") 
 		// Määritetty kellä on oikeus /auth/* endpointtiin
 		.and().formLogin().loginPage("/login").defaultSuccessUrl("/auth/logged", true).permitAll()
-		.and().logout()
+		.and().logout().logoutSuccessUrl("/home")
 		.permitAll();
 	}
 	

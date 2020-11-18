@@ -112,6 +112,19 @@ public class ItemController {
 		model.addAttribute("categories", categoryRepository.findAll());
 		return "edititem";
 	}
+	@RequestMapping(value = "/saveedititem", method = RequestMethod.POST)
+	public String saveEditedItem(@Valid @ModelAttribute Item item, BindingResult bindingResult, Model model) {
+		if (bindingResult.hasErrors()) {	// Jos tulee virheitä
+			model.addAttribute("item", item);
+			model.addAttribute("categories", categoryRepository.findAll());
+			return "edititem";
+		} else {		// Jos kaikki menee oikein
+			itemRepository.save(item);
+			model.addAttribute("item", item);
+			model.addAttribute("categories", categoryRepository.findAll());
+			return "redirect:/auth/itemit";
+		}
+	}
 
 	// Itemin poisto
 

@@ -16,8 +16,10 @@
 	</header>
 
 	<div class="topnav">
-		<a class="active" href="/auth/logged">Koti</a> <a class="active"
-			href="/home">Kirjaudu ulos</a>
+		<form th:action="@{/logout}" method="POST">
+	<Button type="submit">Kirjaudu ulos</Button>
+	</form>
+		<a class="active" href="/auth/logged">Koti</a> 
 	</div>
 	<header class="header">
 		<h1>Lista esineistä</h1>

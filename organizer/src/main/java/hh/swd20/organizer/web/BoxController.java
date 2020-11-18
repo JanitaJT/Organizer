@@ -99,5 +99,16 @@ public class BoxController {
 		model.addAttribute("box", box);
 		return "edit";
 		}
+	
+	@RequestMapping(value = "/saveeditbox", method = RequestMethod.POST)
+	public String saveEditedBox(@Valid @ModelAttribute Box box, BindingResult bindingResult, Model model) {
+		if (bindingResult.hasErrors()) { // Jos tulee virheitä
+			return "edit";
+		} else { // Jos kaikki menee oikein
+			boxRepository.save(box);
+			model.addAttribute("box", box);
+			return "redirect:/auth/logged";
+		}
+	}
 
 }

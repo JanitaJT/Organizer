@@ -23,21 +23,21 @@
 				<p th:if="${#fields.hasErrors('firstname')}" th:errors="*{firstname}">
 					Error</p>
 				<label>Etunimi <input type="text" th:field="*{firstname}"
-					placeholder="Anna etunimi" /> 
+					placeholder="Anna etunimi(2-30 merkkiä pitkä)" /> 
 				</label>
 				</div>
 				<div>
 				<p th:if="${#fields.hasErrors('lastname')}" th:errors="*{lastname}">
 					Error</p>
 				<label> Sukunimi <input type="text"
-					th:field="*{lastname}" placeholder="Anna sukunimi"  />
+					th:field="*{lastname}" placeholder="Anna sukunimi(2-40 merkkiä pitkä!)"  />
 				</label> 
 				</div>
 				<div>
 				<p th:if="${#fields.hasErrors('gender')}" th:errors="*{gender}">
 					Error</p>
 				<label>Sukupuoli <input type="text"
-					th:field="*{gender}" placeholder="Anna sukupuoli"
+					th:field="*{gender}" placeholder="Anna sukupuoli(mies tai nainen)"
 					/>
 				</label>
 				</div>
@@ -47,7 +47,7 @@
 					Error</p>
 				<label>Käyttäjänimi
 					<input type="text" th:field="*{username}"
-					placeholder="Anna käyttäjänimesi"/>
+					placeholder="Anna käyttäjänimesi(4-30 merkkiä pitkä)"/>
 				</label>
 			
 					</div>
@@ -57,7 +57,7 @@
 					Error</p>
 				<label>Sähköposti<input
 					th:field="*{email}" type="text"
-					placeholder="Anna sähköposti"/>
+					placeholder="Anna sähköposti(15-60 merkkiä pitkä)"/>
 					</label>
 					</div> 
 				<br>
@@ -66,7 +66,7 @@
 						th:errors="*{password}">error</p>
 				<label>Salsana<input
 					th:field="*{password}" type="password"
-					placeholder="Anna salasanasi"/>
+					placeholder="Anna salasanasi(4-20 merkkiä pitkä)"/>
 					</label>
 					</div>
 					<div>

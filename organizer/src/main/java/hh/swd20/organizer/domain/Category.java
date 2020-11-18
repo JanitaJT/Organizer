@@ -25,7 +25,7 @@ public class Category {
 	private String cName;
 	
 	
-	@Size(min=2, max=40, message="Kuvauksen pitää olla 2-40 merkkiä pitkä!")
+	@Size(min=2, max=90, message="Kuvauksen pitää olla 2-90 merkkiä pitkä!")
 	private String cDesc;
 
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "category")

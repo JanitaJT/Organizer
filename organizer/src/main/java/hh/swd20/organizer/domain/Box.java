@@ -34,13 +34,13 @@ public class Box {
 	@Size(min=2, max=20, message="Nimen pitää olla 2-20 merkkiä pitkä!")
 	private String bName;
 	
-	@Size(min=2, max=40, message="Kuvauksen pitää olla 2-40 merkkiä pitkä!")
+	@Size(min=2, max=90, message="Kuvauksen pitää olla 2-90 merkkiä pitkä!")
 	private String bDesc;
 	
 	@NotNull(message="Vaihtoehto ei voi olla tyhjä!")
 	private Boolean bPrivate;
 	
-	@Size(min=2, max=20,  message="Kuvauksen pitää olla 2-40 merkkiä pitkä!")
+	@Size(min=2, max=50,  message="Paikan pitää olla 2-50 merkkiä pitkä!")
 	private String bLocation;
 
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "box")

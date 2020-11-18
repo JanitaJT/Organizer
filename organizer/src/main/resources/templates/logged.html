@@ -17,10 +17,14 @@
 	</header>
 
 	<div class="topnav">
-		<a class="active" href="/home">Kirjaudu ulos</a> <a class="active"
-			href="/auth/cates">Kategoriat</a> <a class="active"
-			href="/auth/addcategory">Lisää kategoria</a> <a class="active"
-			href="/auth/addbox">Lisää laatikko</a>
+	<form th:action="@{/logout}" method="POST">
+	<Button type="submit">Kirjaudu ulos</Button>
+	</form>
+<!-- 		<a class="active" href="/logout">Kirjaudu ulos</a>  -->
+			<a class="active" href="/auth/itemit">Esineet</a> 
+		<a class="active" href="/auth/cates">Kategoriat</a> 
+		<a class="active" href="/auth/addcategory">Lisää kategoria</a> 
+		<a class="active" href="/auth/addbox">Lisää laatikko</a>
 	</div>
 	<header class="header">
 		<h1>Listaus kaikista laatikoista</h1>

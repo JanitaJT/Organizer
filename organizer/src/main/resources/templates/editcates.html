@@ -9,7 +9,7 @@
 	th:ref="@{/styles/signandlogin.css}" type="text/css" rel="stylesheet" />
 </head>
 <body>
-	<form action="#" th:action="@{/savecate}" th:object=${category}
+	<form action="#" th:action="@{/saveeditcate}" th:object=${category}
 		method="post">
 		<div class="imgcontainer">
 			<img th:src="@{/styles/avatar.jpg}" alt="Avatar" class="avatar">
@@ -19,11 +19,15 @@
 
 			<input type="hidden" th:field="${category.cateId}" />
 			<div>
+				<p th:if="${#fields.hasErrors('cName')}"
+					th:errors="${category.cName}">Error</p>
 				<label>Nimi<input type="text" th:field="${category.cName}"
 					placeholder="Anna nimi" />
 				</label>
 			</div>
 			<div>
+				<p th:if="${#fields.hasErrors('cDesc')}"
+					th:errors="${category.cDesc}">Error</p>
 				<label>Kuvaus<input type="text" th:field="${category.cDesc}"
 					placeholder="Anna kuvaus" />
 				</label>
