@@ -75,8 +75,7 @@
 				 <label>Varmista salasana <input th:field="*{passwordCheck}" type="password"
 					placeholder="Anna salasanasi"/>
 				</label> 
-				<p th:if="${#fields.hasErrors('passwordCheck')}"
-						th:errors="*{passwordCheck}">Password match error</p>
+			
 						</div>
 				    <button type="submit">Tallenna</button>
 				 <a href="/home" class="button">Peruuta</a>
